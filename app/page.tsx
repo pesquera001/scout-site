@@ -203,7 +203,7 @@ const CinematicHeroSection = () => {
           className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-white leading-tight retro-shadow-clay mb-4">
-            <span className="text-prairie-clay">SCOUT'S</span>
+            <span className="text-saddle-dust">SCOUT'S</span>
           </h1>
           <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl text-white leading-tight retro-shadow-denim">
             <span className="text-saddle-dust">WINDOW SERVICES</span>
