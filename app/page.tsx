@@ -86,29 +86,64 @@ const ScoutHead = () => (
   `}</style>
 );
 
-const Nav = () => (
-  <header className="fixed top-0 left-0 right-0 z-50 bg-white-canvas/80 backdrop-blur-md">
-    <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
-      <div className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">
-        <a href="/">SCOUT'S</a>
+const Nav = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white-canvas/80 backdrop-blur-md">
+      <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
+        <div className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">
+          <a href="/">SCOUT'S</a>
+        </div>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-8">
+          <a href="/" className="font-mono text-sm font-light text-worn-denim tracking-wide">HOME</a>
+          <a href="#services" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
+          <a href="#process" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
+          <a href="#about" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
+          <a href="/clients" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
+          <a href="/shop" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
+        </nav>
+
+        {/* Mobile Menu Button */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="md:hidden p-2 text-worn-denim"
+        >
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {isMobileMenuOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+
+        <Button 
+          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+          className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter text-sm font-bold tracking-wide px-6 py-2"
+        >
+          GET_QUOTE
+        </Button>
       </div>
-      <nav className="hidden md:flex items-center gap-8">
-        <a href="/" className="font-mono text-sm font-light text-worn-denim tracking-wide">HOME</a>
-        <a href="/clients" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
-        <a href="/shop" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
-        <a href="#services" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
-        <a href="#process" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
-        <a href="#about" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
-      </nav>
-      <Button 
-        onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-        className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter text-sm font-bold tracking-wide px-6 py-2"
-      >
-        GET_QUOTE
-      </Button>
-    </div>
-  </header>
-);
+
+      {/* Mobile Navigation Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white-canvas border-b border-saddle-dust/50">
+          <nav className="container mx-auto px-6 py-4 space-y-4">
+            <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">HOME</a>
+            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SERVICES</a>
+            <a href="#process" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">PROCESS</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">ABOUT</a>
+            <a href="/clients" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">CLIENTS</a>
+            <a href="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SHOP</a>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+};
 
 const HeroSection = () => (
   <section id="home" className="pt-32 pb-16 md:pt-40 md:pb-24 bg-worn-denim text-white-canvas">
@@ -696,11 +731,11 @@ const Footer = () => (
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">NAVIGATE</h4>
           <ul className="space-y-3 font-typewriter text-smoke-tin/80">
             <li><a href="/" className="hover:text-worn-denim tracking-wide">HOME</a></li>
-            <li><a href="/clients" className="hover:text-worn-denim tracking-wide">CLIENTS</a></li>
-            <li><a href="/shop" className="hover:text-worn-denim tracking-wide">SHOP</a></li>
             <li><a href="#services" className="hover:text-worn-denim tracking-wide">SERVICES</a></li>
             <li><a href="#process" className="hover:text-worn-denim tracking-wide">PROCESS</a></li>
             <li><a href="#about" className="hover:text-worn-denim tracking-wide">ABOUT</a></li>
+            <li><a href="/clients" className="hover:text-worn-denim tracking-wide">CLIENTS</a></li>
+            <li><a href="/shop" className="hover:text-worn-denim tracking-wide">SHOP</a></li>
           </ul>
         </div>
         <div>
@@ -745,11 +780,26 @@ export default function Home() {
         setCurrentPage(href);
         window.scrollTo(0, 0);
       } else if (href && href.startsWith('#')) { 
-         const id = href.substring(1);
-         const targetElement = document.getElementById(id);
-         if (targetElement) {
-           event.preventDefault();
-           targetElement.scrollIntoView({ behavior: 'smooth' });
+         event.preventDefault();
+         // If we're not on the home page, navigate to home first, then scroll to section
+         if (currentPage !== '/') {
+           window.history.pushState({}, '', '/');
+           setCurrentPage('/');
+           // Wait for page to load, then scroll to section
+           setTimeout(() => {
+             const id = href.substring(1);
+             const targetElement = document.getElementById(id);
+             if (targetElement) {
+               targetElement.scrollIntoView({ behavior: 'smooth' });
+             }
+           }, 100);
+         } else {
+           // If we're already on home page, just scroll to section
+           const id = href.substring(1);
+           const targetElement = document.getElementById(id);
+           if (targetElement) {
+             targetElement.scrollIntoView({ behavior: 'smooth' });
+           }
          }
       }
     };
