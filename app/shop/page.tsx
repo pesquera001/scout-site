@@ -119,7 +119,7 @@ const HeroSection = () => (
 );
 
 const ProductGrid = () => {
-  const [quantities, setQuantities] = useState({});
+  const [quantities, setQuantities] = useState<Record<number, number>>({});
 
   const products = [
     {
@@ -237,14 +237,14 @@ const ProductGrid = () => {
     }
   ];
 
-  const updateQuantity = (productId, change) => {
+  const updateQuantity = (productId: number, change: number) => {
     setQuantities(prev => ({
       ...prev,
       [productId]: Math.max(0, (prev[productId] || 0) + change)
     }));
   };
 
-  const addToCart = (productId) => {
+  const addToCart = (productId: number) => {
     const quantity = quantities[productId] || 1;
     alert(`Added ${quantity} item(s) to cart. Scout works. Cart fills.`);
   };
