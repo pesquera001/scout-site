@@ -90,7 +90,7 @@ const Nav = () => (
   <header className="fixed top-0 left-0 right-0 z-50 bg-white-canvas/80 backdrop-blur-md">
     <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
       <div className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">
-        <a href="/">SCOUT</a>
+        <a href="/">SCOUT'S</a>
       </div>
       <nav className="hidden md:flex items-center gap-8">
         <a href="/" className="font-mono text-sm font-light text-worn-denim tracking-wide">HOME</a>
@@ -122,7 +122,7 @@ const HeroSection = () => (
           THE ART OF DOING.
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-white-canvas/80 leading-relaxed tracking-wide">
-          Scout doesn't advertise streak-free cleaning. It delivers it. 
+          Scout's doesn't advertise streak-free cleaning. It delivers it. 
           <br />
           Honest work, minimal aesthetics, and impossibly clean windows.
         </p>
@@ -266,16 +266,16 @@ const AboutSection = () => (
           className="w-full h-96 md:h-[500px] bg-saddle-dust rounded-lg relative flex items-center justify-center text-white/70 border-4 border-prairie-clay/50 overflow-hidden"
         >
           <Image
-            src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
-            alt="Professional window cleaner working on high-rise building"
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+            alt="Luxury floor-to-ceiling windows with pristine glass"
             fill
             className="object-cover"
             priority
           />
           <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
             <div className="text-center">
-              <p className="font-display text-2xl tracking-wide text-white-canvas retro-shadow-denim">PROFESSIONAL_SERVICE</p>
-              <p className="font-typewriter text-sm mt-2 text-white-canvas/80">Precision cleaning at any height.</p>
+              <p className="font-display text-2xl tracking-wide text-white-canvas retro-shadow-denim">LUXURY_WINDOWS</p>
+              <p className="font-typewriter text-sm mt-2 text-white-canvas/80">Pristine clarity for discerning clients.</p>
             </div>
           </div>
         </motion.div>
@@ -287,7 +287,7 @@ const AboutSection = () => (
         >
           <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-8 retro-shadow">HONEST WORK.<br />MINIMAL AESTHETICS.</h2>
           <p className="text-lg font-typewriter text-smoke-tin/80 mb-8 leading-relaxed tracking-wide">
-            Scout was founded on a simple principle: do the job well, do it quietly, and let the results speak for themselves. We are a team that finds grace in labor and beauty in simplicity. We show up clean. We leave things cleaner.
+            Scout's was founded on a simple principle: do the job well, do it quietly, and let the results speak for themselves. We are a team that finds grace in labor and beauty in simplicity. We show up clean. We leave things cleaner.
           </p>
           <div className="grid grid-cols-2 gap-6">
             <div className="flex items-center gap-3">
@@ -530,31 +530,31 @@ const ClientsPage = () => {
   const clientProjects = [
     {
       id: 1,
-      type: "RESIDENTIAL_PROJECT",
-      title: "HISTORIC_BROWNSTONE_REVIVAL",
-      description: "Restoring the original luster to grand historic windows, letting light flood into reimagined spaces.",
-      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      type: "LUXURY_RESIDENTIAL",
+      title: "PENTHOUSE_GLASS_WALLS",
+      description: "Floor-to-ceiling windows in a luxury penthouse, achieving perfect clarity for panoramic city views.",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       id: 2,
-      type: "COMMERCIAL_PROJECT",
-      title: "DOWNTOWN_OFFICE_FACADE",
-      description: "Ensuring a pristine, professional appearance for a high-rise office building, reflecting corporate excellence.",
-      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      type: "HIGH_END_COMMERCIAL",
+      title: "LUXURY_HOTEL_FACADE",
+      description: "Crystal-clear windows for a five-star hotel, ensuring guests enjoy unobstructed luxury views.",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       id: 3,
-      type: "SPECIALTY_PROJECT",
-      title: "GALLERY_SKYLIGHT_CLEAN",
-      description: "Delicate and precise cleaning of intricate skylight systems for an art gallery, maintaining perfect viewing conditions.",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      type: "PRESTIGE_PROJECT",
+      title: "ART_GALLERY_SKYLIGHTS",
+      description: "Delicate cleaning of museum skylights, preserving perfect natural lighting for priceless artwork.",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     },
     {
       id: 4,
-      type: "RESIDENTIAL_PROJECT",
-      title: "MODERN_ESTATE_OVERLOOK",
-      description: "Seamless streak-free views for a sprawling estate with extensive glass walls overlooking a natural landscape.",
-      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+      type: "LUXURY_ESTATE",
+      title: "MODERN_GLASS_MANSION",
+      description: "Streak-free perfection for a contemporary glass mansion with expansive window walls.",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
     }
   ];
 
@@ -590,7 +590,7 @@ const ClientsPage = () => {
           OUR_PORTFOLIO.
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-smoke-tin/80 leading-relaxed tracking-wide">
-          A glimpse into the diverse projects where Scout has delivered unparalleled clarity.
+          A glimpse into the diverse projects where Scout's has delivered unparalleled clarity.
         </p>
       </div>
       <div className="h-[600px] md:h-[700px] flex items-center justify-center">
@@ -606,31 +606,31 @@ const ShopPage = () => {
   const shopItems = [
     {
       id: 1,
-      name: "SCOUT_SQUEEGEE_PRO_MODEL",
-      price: "$49.99",
-      description: "Precision-engineered for professional-grade streak-free results. The tool of choice for the discerning.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      name: "SCOUT'S_PREMIUM_SQUEEGEE",
+      price: "$89.99",
+      description: "Professional-grade squeegee with precision-engineered blade for streak-free luxury results.",
+      image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 2,
-      name: "ULTRA_CLEAN_CONCENTRATE",
-      price: "$19.99",
-      description: "Our proprietary, eco-friendly cleaning solution. Dilute, apply, and witness perfection.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      name: "LUXURY_WINDOW_SOLUTION",
+      price: "$34.99",
+      description: "Our proprietary, eco-friendly cleaning concentrate for pristine luxury windows.",
+      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 3,
-      name: "MICROFIBER_BUFFING_CLOTH",
-      price: "$9.99",
-      description: "Finest weave, ultimate absorbency. For that final, invisible polish.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      name: "PREMIUM_MICROFIBER_SET",
+      price: "$19.99",
+      description: "Ultra-soft microfiber cloths for that final, invisible polish on luxury glass.",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 4,
-      name: "SCOUT_BRANDED_CAP",
-      price: "$24.99",
-      description: "Show your allegiance to clarity. A durable, understated cap for the true Scout.",
-      image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+      name: "SCOUT'S_LUXURY_CAP",
+      price: "$39.99",
+      description: "Premium cap for those who appreciate true clarity and understated luxury.",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
   ];
 
@@ -658,7 +658,7 @@ const ShopPage = () => {
     <div className="pt-32 pb-16 md:pt-40 md:pb-24">
       <div className="container mx-auto px-6 text-center mb-16">
         <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-worn-denim leading-tight retro-shadow">
-          THE_SCOUT_SUPPLY.
+          THE_SCOUT'S_SUPPLY.
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-smoke-tin/80 leading-relaxed tracking-wide">
           Tools and merchandise for those who appreciate true clarity and understated quality.
@@ -690,7 +690,7 @@ const Footer = () => (
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
         <div className="md:col-span-1">
-          <h3 className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">SCOUT</h3>
+          <h3 className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">SCOUT'S</h3>
         </div>
         <div>
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">NAVIGATE</h4>
@@ -719,7 +719,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="mt-16 pt-8 border-t-2 border-saddle-dust/30 text-center">
-        <p className="font-typewriter text-sm text-smoke-tin/60 tracking-wide">© 2025 SCOUT_WINDOW_CLEANING. SHOW_UP_CLEAN. LEAVE_CLEANER.</p>
+        <p className="font-typewriter text-sm text-smoke-tin/60 tracking-wide">© 2025 SCOUT'S_WINDOW_CLEANING. SHOW_UP_CLEAN. LEAVE_CLEANER.</p>
       </div>
     </div>
   </footer>

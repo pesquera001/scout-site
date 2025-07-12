@@ -6,12 +6,12 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Scout Window Cleaning | Professional Window Cleaning Services',
+  title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
   description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties. Get your free quote today.',
   keywords: 'window cleaning, professional window cleaning, residential window cleaning, commercial window cleaning, window washing, building maintenance',
-  authors: [{ name: 'Scout Window Cleaning' }],
-  creator: 'Scout Window Cleaning',
-  publisher: 'Scout Window Cleaning',
+  authors: [{ name: 'Scout\'s Window Cleaning' }],
+  creator: 'Scout\'s Window Cleaning',
+  publisher: 'Scout\'s Window Cleaning',
   formatDetection: {
     email: false,
     address: false,
@@ -22,16 +22,16 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'Scout Window Cleaning | Professional Window Cleaning Services',
+    title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
     description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties.',
     url: 'https://scout-window-cleaning.vercel.app',
-    siteName: 'Scout Window Cleaning',
+    siteName: 'Scout\'s Window Cleaning',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
         width: 1200,
         height: 630,
-        alt: 'Professional window cleaner working on high-rise building',
+        alt: 'Luxury floor-to-ceiling windows with pristine glass',
       },
     ],
     locale: 'en_US',
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Scout Window Cleaning | Professional Window Cleaning Services',
+    title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
     description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties.',
-    images: ['https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'],
+    images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'],
   },
   robots: {
     index: true,
@@ -96,7 +96,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "Scout Window Cleaning",
+              "name": "Scout's Window Cleaning",
               "description": "Professional window cleaning services for residential and commercial properties",
               "url": "https://scout-window-cleaning.vercel.app",
               "telephone": "+1-555-123-CLEAN",
@@ -114,7 +114,7 @@ export default function RootLayout({
               },
               "openingHours": "Mo-Fr 08:00-18:00",
               "priceRange": "$$",
-              "image": "https://images.unsplash.com/photo-1581578731548-c64695cc6952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+              "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
               "sameAs": [
                 "https://www.facebook.com/scoutwindowcleaning",
                 "https://www.instagram.com/scoutwindowcleaning"
