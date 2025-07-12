@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --white-canvas: #F9F8F5;
+  --worn-denim: #708B91;
+  --prairie-clay: #B9856F;
+  --saddle-dust: #E5D3BD;
+  --smoke-tin: #78736E;
+  --font-retro-display: 'Bebas Neue', sans-serif;
+  --font-retro-mono: 'JetBrains Mono', monospace;
+  --font-retro-typewriter: 'Courier Prime', monospace;
+}
+
+body {
+  background-color: var(--white-canvas);
+  color: var(--smoke-tin);
+  font-family: var(--font-retro-mono);
+  font-weight: 400;
+}
+
+.font-display {
+  font-family: var(--font-retro-display);
+  letter-spacing: 0.05em;
+}
+
+.font-mono {
+  font-family: var(--font-retro-mono);
+}
+
+.font-typewriter {
+  font-family: var(--font-retro-typewriter);
+}
+
+.marquee-content {
+  animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0%); }
+  to { transform: translateX(-50%); }
+}
+
+.retro-shadow {
+  text-shadow: 3px 3px 0px var(--saddle-dust);
+}
+
+.retro-shadow-clay {
+  text-shadow: 3px 3px 0px var(--prairie-clay);
+}
+
+.retro-shadow-denim {
+   text-shadow: 3px 3px 0px var(--worn-denim);
+}
+
+.two-tone-bg {
+  background: linear-gradient(135deg, var(--saddle-dust) 50%, var(--prairie-clay) 50%);
+}
+
+.typewriter-effect {
+  border-right: 2px solid var(--worn-denim);
+  animation: typewriter 3s steps(40) 1s 1 normal both, blinkTextCursor 500ms steps(40) infinite normal;
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blinkTextCursor {
+  from { border-right-color: var(--worn-denim); }
+  to { border-right-color: transparent; }
+} 
