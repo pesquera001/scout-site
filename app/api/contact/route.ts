@@ -22,13 +22,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Here you would typically send an email using a service like:
-    // - Resend (recommended for Next.js)
-    // - Nodemailer
-    // - SendGrid
-    // - AWS SES
-    
-    // For now, we'll simulate sending an email
+    // Log the submission for now (replace with actual email service)
     console.log('Contact form submission:', {
       name,
       email,
@@ -38,6 +32,44 @@ export async function POST(request: NextRequest) {
 
     // Simulate email sending delay
     await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // TODO: Replace this with actual email service
+    // Example with Resend (uncomment and configure):
+    /*
+    import { Resend } from 'resend';
+    
+    const resend = new Resend(process.env.RESEND_API_KEY);
+    
+    try {
+      await resend.emails.send({
+        from: 'Scout Window Cleaning <hello@scout.work>',
+        to: ['hello@scout.work'],
+        subject: 'New Quote Request from Scout Website',
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+            <h2 style="color: #708B91;">New Quote Request</h2>
+            <div style="background: #f9f8f5; padding: 20px; border-radius: 8px;">
+              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Message:</strong></p>
+              <div style="background: white; padding: 15px; border-radius: 4px; margin-top: 10px;">
+                ${message.replace(/\n/g, '<br>')}
+              </div>
+            </div>
+            <p style="color: #78736E; font-size: 12px; margin-top: 20px;">
+              This request was submitted from the Scout Window Cleaning website.
+            </p>
+          </div>
+        `
+      });
+    } catch (emailError) {
+      console.error('Email sending failed:', emailError);
+      return NextResponse.json(
+        { error: 'Failed to send email. Please try again later.' },
+        { status: 500 }
+      );
+    }
+    */
 
     // Return success response
     return NextResponse.json(
