@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     siteName: 'Scout\'s Window Cleaning',
     images: [
       {
-        url: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+        url: '/hero/hero-house.webp',
         width: 1200,
         height: 630,
         alt: 'Luxury floor-to-ceiling windows with pristine glass',
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
     description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties.',
-    images: ['https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'],
+    images: ['/hero/hero-house.webp'],
   },
   robots: {
     index: true,
@@ -114,7 +114,7 @@ export default function RootLayout({
               },
               "openingHours": "Mo-Fr 08:00-18:00",
               "priceRange": "$$",
-              "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+              "image": "/hero/hero-house.webp",
               "sameAs": [
                 "https://www.facebook.com/scoutwindowcleaning",
                 "https://www.instagram.com/scoutwindowcleaning"

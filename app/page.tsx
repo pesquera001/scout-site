@@ -10,87 +10,90 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const ScoutHead = () => (
-  <style>{`
-    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+  <>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;700&display=swap" as="style" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;700&display=swap" />
+    <style>{`
+      :root {
+        --white-canvas: #F9F8F5;
+        --worn-denim: #708B91;
+        --prairie-clay: #B9856F;
+        --saddle-dust: #E5D3BD;
+        --smoke-tin: #78736E;
+        --font-retro-display: 'Bebas Neue', sans-serif;
+        --font-retro-mono: 'JetBrains Mono', monospace;
+      }
 
-    :root {
-      --white-canvas: #F9F8F5;
-      --worn-denim: #708B91;
-      --prairie-clay: #B9856F;
-      --saddle-dust: #E5D3BD;
-      --smoke-tin: #78736E;
-      --font-retro-display: 'Bebas Neue', sans-serif;
-      --font-retro-mono: 'JetBrains Mono', monospace;
-      --font-retro-typewriter: 'Courier Prime', monospace;
-    }
+      body {
+        background-color: var(--white-canvas);
+        color: var(--smoke-tin);
+        font-family: var(--font-retro-mono);
+        font-weight: 400;
+      }
+      
+      .font-display {
+        font-family: var(--font-retro-display);
+        letter-spacing: 0.05em;
+      }
+      
+      .font-mono {
+        font-family: var(--font-retro-mono);
+      }
+      
+      .font-typewriter {
+        font-family: var(--font-retro-mono);
+      }
+      
+      .marquee-content {
+        animation: marquee 30s linear infinite;
+      }
 
-    body {
-      background-color: var(--white-canvas);
-      color: var(--smoke-tin);
-      font-family: var(--font-retro-mono);
-      font-weight: 400;
-    }
-    
-    .font-display {
-      font-family: var(--font-retro-display);
-      letter-spacing: 0.05em;
-    }
-    
-    .font-mono {
-      font-family: var(--font-retro-mono);
-    }
-    
-    .font-typewriter {
-      font-family: var(--font-retro-typewriter);
-    }
-    
-    .marquee-content {
-      animation: marquee 30s linear infinite;
-    }
+      @keyframes marquee {
+        from { transform: translateX(0%); }
+        to { transform: translateX(-50%); }
+      }
 
-    @keyframes marquee {
-      from { transform: translateX(0%); }
-      to { transform: translateX(-50%); }
-    }
+      .retro-shadow {
+        text-shadow: 3px 3px 0px var(--saddle-dust);
+      }
+      
+      .retro-shadow-clay {
+        text-shadow: 3px 3px 0px var(--prairie-clay);
+      }
+      
+      .retro-shadow-denim {
+         text-shadow: 3px 3px 0px var(--worn-denim);
+      }
 
-    .retro-shadow {
-      text-shadow: 3px 3px 0px var(--saddle-dust);
-    }
-    
-    .retro-shadow-clay {
-      text-shadow: 3px 3px 0px var(--prairie-clay);
-    }
-    
-    .retro-shadow-denim {
-       text-shadow: 3px 3px 0px var(--worn-denim);
-    }
+      .two-tone-bg {
+        background: linear-gradient(135deg, var(--saddle-dust) 50%, var(--prairie-clay) 50%);
+      }
 
-    .two-tone-bg {
-      background: linear-gradient(135deg, var(--saddle-dust) 50%, var(--prairie-clay) 50%);
-    }
+      .typewriter-effect {
+        border-right: 2px solid var(--worn-denim);
+        animation: typewriter 3s steps(40) 1s 1 normal both, blinkTextCursor 500ms steps(40) infinite normal;
+      }
 
-    .typewriter-effect {
-      border-right: 2px solid var(--worn-denim);
-      animation: typewriter 3s steps(40) 1s 1 normal both, blinkTextCursor 500ms steps(40) infinite normal;
-    }
+      @keyframes typewriter {
+        from { width: 0; }
+        to { width: 100%; }
+      }
 
-    @keyframes typewriter {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-
-    @keyframes blinkTextCursor {
-      from { border-right-color: var(--worn-denim); }
-      to { border-right-color: transparent; }
-    }
-  `}</style>
+      @keyframes blinkTextCursor {
+        from { border-right-color: var(--worn-denim); }
+        to { border-right-color: transparent; }
+      }
+    `}</style>
+  </>
 );
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white-canvas/80 backdrop-blur-md">
+    <header className="bg-white-canvas/80 backdrop-blur-md z-50">
       <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
         <div className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">
           <a href="/">SCOUT'S</a>
@@ -99,9 +102,9 @@ const Nav = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
           <a href="/" className="font-mono text-sm font-light text-worn-denim tracking-wide">HOME</a>
+          <a href="#about" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
           <a href="#services" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
           <a href="#process" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
-          <a href="#about" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
           <a href="/clients" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
           <a href="/shop" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
         </nav>
@@ -133,9 +136,9 @@ const Nav = () => {
         <div className="md:hidden bg-white-canvas border-b border-saddle-dust/50">
           <nav className="container mx-auto px-6 py-4 space-y-4">
             <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">HOME</a>
+            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">ABOUT</a>
             <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SERVICES</a>
             <a href="#process" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">PROCESS</a>
-            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">ABOUT</a>
             <a href="/clients" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">CLIENTS</a>
             <a href="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SHOP</a>
           </nav>
@@ -145,53 +148,82 @@ const Nav = () => {
   );
 };
 
-const HeroSection = () => (
-  <section id="home" className="pt-32 pb-16 md:pt-40 md:pb-24 bg-worn-denim text-white-canvas">
-    <div className="container mx-auto px-6 text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+const HERO_IMAGE_URL = "/hero/hero-house.webp";
+
+const GRAINY_BG = `
+  repeating-linear-gradient(135deg, #f9f8f5 0px, #f9f8f5 2px, #ece9e6 3px, #f9f8f5 4px),
+  repeating-linear-gradient(45deg, #f9f8f5 0px, #f9f8f5 2px, #ece9e6 3px, #f9f8f5 4px)
+`;
+
+const STATIC_OVERLAY = "/static/tv-static.gif"; // Place a semi-transparent static gif in public/static/
+
+const CinematicHeroSection = () => {
+  const [showImage, setShowImage] = useState(false);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  useEffect(() => {
+    // Check if fonts are loaded
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        setFontsLoaded(true);
+      });
+    } else {
+      // Fallback for browsers that don't support document.fonts
+      setTimeout(() => setFontsLoaded(true), 100);
+    }
+
+    // Start fade after 3 seconds, last 15 seconds
+    const timer = setTimeout(() => setShowImage(true), 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <section id="home" className="relative min-h-[80vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pb-0 mb-0">
+      {/* Hero Image Fade In */}
+      <div
+        className="absolute inset-0 w-full h-full z-0 transition-opacity duration-[15000ms]"
+        style={{ opacity: showImage ? 1 : 0 }}
       >
-        <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-white-canvas leading-tight retro-shadow-clay">
-          THE ART OF DOING.
-        </h1>
-        <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-white-canvas/80 leading-relaxed tracking-wide">
-          Scout's doesn't advertise streak-free cleaning. It delivers it. 
-          <br />
-          Honest work, minimal aesthetics, and impossibly clean windows.
-        </p>
-        <div className="mt-10 flex justify-center gap-4">
-          <Button 
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            size="lg" 
-            className="bg-prairie-clay text-white hover:bg-opacity-90 font-typewriter font-bold tracking-wide px-8 py-4 text-base"
-          >
-            GET_INSTANT_QUOTE
-          </Button>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="border-white-canvas text-white-canvas hover:bg-white-canvas hover:text-worn-denim font-typewriter font-bold tracking-wide px-8 py-4 text-base"
-          >
-            LEARN_MORE
-          </Button>
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
+        <Image
+          src={HERO_IMAGE_URL}
+          alt="Modern luxury home with clean windows"
+          fill
+          priority
+          className="object-cover object-[center_90%] w-full h-full"
+          sizes="100vw"
+        />
+      </div>
+      
+      {/* Intro Text - "Scout's" and "Window Services" */}
+      <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: (showImage ? 0 : 1) && fontsLoaded ? 1 : 0 }}
+          transition={{ duration: 2, delay: 0.5 }}
+          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-white leading-tight retro-shadow-clay mb-4">
+            <span className="text-prairie-clay">SCOUT'S</span>
+          </h1>
+          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl text-white leading-tight retro-shadow-denim">
+            <span className="text-saddle-dust">WINDOW SERVICES</span>
+          </h2>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
 
 const ClientMarquee = () => {
   const clients = ["RESIDENTIAL_HOMES", "STOREFRONTS", "MODERN_LOFTS", "HISTORIC_BUILDINGS", "OFFICE_PARKS", "BOUTIQUE_HOTELS"];
   const extendedClients = [...clients, ...clients];
 
   return (
-    <div className="py-12 bg-saddle-dust overflow-hidden">
+    <div className="py-4 bg-saddle-dust overflow-hidden">
       <div className="relative flex">
-        <div className="marquee-content flex gap-12 items-center">
+        <div className="marquee-content flex gap-6 items-center">
           {extendedClients.map((client, index) => (
-            <div key={index} className="flex-shrink-0 text-smoke-tin/80 font-mono text-lg font-medium tracking-wider">
+            <div key={index} className="flex-shrink-0 text-smoke-tin/80 font-mono text-base font-medium tracking-wide">
               {client}
             </div>
           ))}
@@ -301,8 +333,8 @@ const AboutSection = () => (
           className="w-full h-96 md:h-[500px] bg-saddle-dust rounded-lg relative flex items-center justify-center text-white/70 border-4 border-prairie-clay/50 overflow-hidden"
         >
           <Image
-            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
-            alt="Luxury floor-to-ceiling windows with pristine glass"
+            src={HERO_IMAGE_URL}
+            alt="Luxury window cleaning - Scout's"
             fill
             className="object-cover"
             priority
@@ -762,8 +794,19 @@ const Footer = () => (
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState('/');
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
+    // Check if fonts are loaded
+    if (document.fonts) {
+      document.fonts.ready.then(() => {
+        setFontsLoaded(true);
+      });
+    } else {
+      // Fallback for browsers that don't support document.fonts
+      setTimeout(() => setFontsLoaded(true), 100);
+    }
+
     const handlePopstate = () => {
       setCurrentPage(window.location.pathname);
       window.scrollTo(0, 0);
@@ -833,11 +876,16 @@ export default function Home() {
       default:
         return (
           <>
-            <HeroSection />
-            <ClientMarquee />
+            <CinematicHeroSection />
+            <div className="sticky top-0 z-50 -mt-10">
+              <Nav />
+            </div>
+            <div className="-mt-1 md:-mt-2">
+              <ClientMarquee />
+            </div>
+            <AboutSection />
             <ServicesSection />
             <ProcessSection />
-            <AboutSection />
             <TestimonialSection />
             <ContactSection />
           </>
@@ -848,9 +896,28 @@ export default function Home() {
   return (
     <>
       <ScoutHead />
-      <Nav />
-      <main>
-        {renderPage()}
+      <main style={{ opacity: fontsLoaded ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
+        {currentPage === '/' ? (
+          <>
+            <CinematicHeroSection />
+            <div className="sticky top-0 z-50 -mt-10">
+              <Nav />
+            </div>
+            <div className="-mt-1 md:-mt-2">
+              <ClientMarquee />
+            </div>
+            <AboutSection />
+            <ServicesSection />
+            <ProcessSection />
+            <TestimonialSection />
+            <ContactSection />
+          </>
+        ) : (
+          <>
+            <Nav />
+            {renderPage()}
+          </>
+        )}
       </main>
       <Footer />
     </>

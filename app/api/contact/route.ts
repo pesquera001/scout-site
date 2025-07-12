@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,29 +23,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log the submission for now (replace with actual email service)
-    console.log('Contact form submission:', {
-      name,
-      email,
-      message,
-      timestamp: new Date().toISOString(),
-    });
+    // Check if Resend API key is configured
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY is not configured');
+      return NextResponse.json(
+        { error: 'Email service not configured. Please try again later.' },
+        { status: 500 }
+      );
+    }
 
-    // Simulate email sending delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // TODO: Replace this with actual email service
-    // Example with Resend (uncomment and configure):
-    /*
-    import { Resend } from 'resend';
-    
+    // Send email using Resend
     const resend = new Resend(process.env.RESEND_API_KEY);
     
     try {
       await resend.emails.send({
-        from: 'Scout Window Cleaning <hello@scout.work>',
+        from: 'Scout\'s Window Cleaning <hello@scout.work>',
         to: ['hello@scout.work'],
-        subject: 'New Quote Request from Scout Website',
+        subject: 'New Quote Request from Scout\'s Website',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #708B91;">New Quote Request</h2>
@@ -57,11 +52,13 @@ export async function POST(request: NextRequest) {
               </div>
             </div>
             <p style="color: #78736E; font-size: 12px; margin-top: 20px;">
-              This request was submitted from the Scout Window Cleaning website.
+              This request was submitted from the Scout's Window Cleaning website.
             </p>
           </div>
         `
       });
+
+      console.log('Email sent successfully via Resend');
     } catch (emailError) {
       console.error('Email sending failed:', emailError);
       return NextResponse.json(
@@ -69,7 +66,6 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    */
 
     // Return success response
     return NextResponse.json(
