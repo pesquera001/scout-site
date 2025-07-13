@@ -383,7 +383,7 @@ const AboutSection = () => (
           className="w-full h-96 md:h-[500px] bg-saddle-dust rounded-lg relative flex items-center justify-center text-white/70 border-4 border-prairie-clay/50 overflow-hidden"
         >
           <Image
-            src="/hero/IMG_5617.HEIC"
+            src="/hero/IMG_5617.jpg"
             alt="Scout's Window Cleaning - Professional service"
             fill
             className="object-cover"
