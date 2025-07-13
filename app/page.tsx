@@ -218,6 +218,8 @@ const STATIC_OVERLAY = "/static/tv-static.gif"; // Place a semi-transparent stat
 const CinematicHeroSection = () => {
   const [showImage, setShowImage] = useState(false);
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [showBranding, setShowBranding] = useState(false);
 
   useEffect(() => {
     // Check if fonts are loaded
@@ -230,17 +232,40 @@ const CinematicHeroSection = () => {
       setTimeout(() => setFontsLoaded(true), 100);
     }
 
-    // Start fade after 3 seconds, last 15 seconds
-    const timer = setTimeout(() => setShowImage(true), 3000);
-    return () => clearTimeout(timer);
+    // Staggered cinematic timing
+    const imageTimer = setTimeout(() => setShowImage(true), 2000);
+    const overlayTimer = setTimeout(() => setShowOverlay(true), 3500);
+    const brandingTimer = setTimeout(() => setShowBranding(true), 4000);
+    
+    return () => {
+      clearTimeout(imageTimer);
+      clearTimeout(overlayTimer);
+      clearTimeout(brandingTimer);
+    };
   }, []);
 
   return (
     <section id="home" className="relative min-h-[80vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pb-0 mb-0">
-      {/* Hero Image Fade In */}
-      <div
-        className="absolute inset-0 w-full h-full z-0 transition-opacity duration-[15000ms]"
-        style={{ opacity: showImage ? 1 : 0 }}
+      {/* Cinematic Background Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+        className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30 z-0"
+      />
+      
+      {/* Hero Image Fade In with Enhanced Cinematic Effect */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={{ 
+          opacity: showImage ? 1 : 0,
+          scale: showImage ? 1 : 1.1
+        }}
+        transition={{ 
+          duration: 4,
+          ease: "easeOut"
+        }}
+        className="absolute inset-0 w-full h-full z-0"
       >
         <Image
           src="/hero/20250712_1704_90s Film Window Cleaning_remix_01k00hg7b8ffmv0fvvs3q8cbq3(1).png"
@@ -249,47 +274,115 @@ const CinematicHeroSection = () => {
           priority
           className="object-cover object-top w-full h-full"
         />
-      </div>
+      </motion.div>
       
-      {/* Centered Hero Headline - Scout's Window Services (before fade-in) */}
+      {/* Centered Hero Headline with Dramatic Entrance */}
       <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: (showImage ? 0 : 1) && fontsLoaded ? 1 : 0 }}
-          transition={{ duration: 2, delay: 0.5 }}
+          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          animate={{ 
+            opacity: (!showImage && fontsLoaded) ? 1 : 0,
+            y: (!showImage && fontsLoaded) ? 0 : 50,
+            scale: (!showImage && fontsLoaded) ? 1 : 0.9
+          }}
+          transition={{ 
+            duration: 2.5,
+            ease: "easeOut",
+            delay: 0.8
+          }}
           className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
         >
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-saddle-dust leading-tight retro-shadow mb-4">
+          <motion.h1 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5, delay: 1.2 }}
+            className="font-display text-6xl md:text-8xl lg:text-9xl text-saddle-dust leading-tight retro-shadow mb-4"
+          >
             SCOUT'S
-          </h1>
-          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl text-saddle-dust/90 leading-tight">
+          </motion.h1>
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 1.8 }}
+            className="font-mono text-3xl md:text-4xl lg:text-5xl text-saddle-dust/90 leading-tight"
+          >
             WINDOW SERVICES
-          </h2>
+          </motion.h2>
         </motion.div>
       </div>
-      {/* Top Left Branding - Fades in with image */}
+      
+      {/* Top Left Branding with Staggered Animation */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showImage && fontsLoaded ? 1 : 0 }}
-        transition={{ duration: 2, delay: 0.5 }}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ 
+          opacity: showBranding && fontsLoaded ? 1 : 0,
+          x: showBranding && fontsLoaded ? 0 : -50
+        }}
+        transition={{ 
+          duration: 1.5,
+          ease: "easeOut",
+          delay: 0.5
+        }}
         className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left"
       >
-        <div className="font-display text-2xl md:text-4xl text-saddle-dust leading-none">Scout's</div>
-        <div className="font-mono text-xs md:text-base text-saddle-dust/90 leading-none">Window Services</div>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1 }}
+          className="font-display text-2xl md:text-4xl text-saddle-dust leading-none"
+        >
+          Scout's
+        </motion.div>
+        <motion.div 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 1.3 }}
+          className="font-mono text-xs md:text-base text-saddle-dust/90 leading-none"
+        >
+          Window Services
+        </motion.div>
       </motion.div>
       
-      {/* Remove two-layer/two-tone headline at top of page */}
-      {/* (No headline overlay in center) */}
-      {/* New Hero Overlay - Right Side, Cream White Text, Down and Right, Fades in with image */}
+      {/* Hero Overlay with Cinematic Entrance */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: showImage && fontsLoaded ? 1 : 0 }}
-        transition={{ duration: 2, delay: 0.5 }}
+        initial={{ opacity: 0, x: 100, y: 50 }}
+        animate={{ 
+          opacity: showOverlay && fontsLoaded ? 1 : 0,
+          x: showOverlay && fontsLoaded ? 0 : 100,
+          y: showOverlay && fontsLoaded ? 0 : 50
+        }}
+        transition={{ 
+          duration: 2,
+          ease: "easeOut",
+          delay: 0.8
+        }}
         className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg"
       >
-        <h1 className="font-display text-2xl md:text-4xl text-saddle-dust leading-none tracking-[0.3em]">Timeless Service.<br/>American Grit.</h1>
-        <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2">Old-school reliability meets a stylist's eye for detail.<br/>Scout's Window Cleaning delivers spotless results and subtle charm — every time.</p>
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: 1.5 }}
+          className="font-display text-2xl md:text-4xl text-saddle-dust leading-none tracking-[0.3em]"
+        >
+          Timeless Service.<br/>American Grit.
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2 }}
+          className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2"
+        >
+          Old-school reliability meets a stylist's eye for detail.<br/>Scout's Window Cleaning delivers spotless results and subtle charm — every time.
+        </motion.p>
       </motion.div>
+      
+      {/* Cinematic Vignette Overlay */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showImage ? 0.3 : 0 }}
+        transition={{ duration: 3, delay: 1 }}
+        className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10 pointer-events-none"
+      />
     </section>
   );
 };
