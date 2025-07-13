@@ -209,8 +209,8 @@ const CinematicHeroSection = () => {
           </h2>
         </motion.div>
       </div>
-      {/* New Hero Overlay - Right Side, Cream White Text, Up and Right */}
-      <div className="absolute top-6 right-4 md:top-12 md:right-8 z-20 text-right w-auto max-w-lg">
+      {/* New Hero Overlay - Right Side, Cream White Text, Down and Right */}
+      <div className="absolute top-20 right-4 md:top-32 md:right-8 z-20 text-right w-auto max-w-lg">
         <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-saddle-dust retro-shadow mb-2 md:mb-4 leading-tight drop-shadow-lg">Timeless Service.<br/>American Grit.</h1>
         <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2 drop-shadow">Old-school reliability meets a stylist’s eye for detail.<br/>Scout’s Window Cleaning delivers spotless results and subtle charm — every time.</p>
       </div>
