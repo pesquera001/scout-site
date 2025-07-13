@@ -189,7 +189,7 @@ const CinematicHeroSection = () => {
           alt="Scout cleaning a window with a dog nearby"
           fill
           priority
-          className="object-cover object-bottom w-full h-full"
+          className="object-cover object-center w-full h-full"
         />
       </div>
       
