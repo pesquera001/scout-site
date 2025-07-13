@@ -6,26 +6,26 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
+  title: 'Friday\'s Window Cleaning | Professional Window Cleaning Services',
   description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties. Get your free quote today.',
   keywords: 'window cleaning, professional window cleaning, residential window cleaning, commercial window cleaning, window washing, building maintenance',
-  authors: [{ name: 'Scout\'s Window Cleaning' }],
-  creator: 'Scout\'s Window Cleaning',
-  publisher: 'Scout\'s Window Cleaning',
+  authors: [{ name: 'Friday\'s Window Cleaning' }],
+  creator: 'Friday\'s Window Cleaning',
+  publisher: 'Friday\'s Window Cleaning',
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://scout-window-cleaning.vercel.app'),
+      metadataBase: new URL('https://fridayswindows.com'),
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
+    title: 'Friday\'s Window Cleaning | Professional Window Cleaning Services',
     description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties.',
-    url: 'https://scout-window-cleaning.vercel.app',
-    siteName: 'Scout\'s Window Cleaning',
+          url: 'https://fridayswindows.com',
+    siteName: 'Friday\'s Window Cleaning',
     images: [
       {
         url: '/hero/hero-house.webp',
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Scout\'s Window Cleaning | Professional Window Cleaning Services',
+    title: 'Friday\'s Window Cleaning | Professional Window Cleaning Services',
     description: 'Honest work, minimal aesthetics, and impossibly clean windows. Professional window cleaning services for residential and commercial properties.',
     images: ['/hero/hero-house.webp'],
   },
@@ -96,11 +96,11 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "Scout's Window Cleaning",
+              "name": "Friday's Window Cleaning",
               "description": "Professional window cleaning services for residential and commercial properties",
-              "url": "https://scout-window-cleaning.vercel.app",
+              "url": "https://fridayswindows.com",
               "telephone": "+1-555-123-CLEAN",
-              "email": "hello@scout.work",
+              "email": "hello@friday.work",
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Your City",
@@ -116,8 +116,8 @@ export default function RootLayout({
               "priceRange": "$$",
               "image": "/hero/hero-house.webp",
               "sameAs": [
-                "https://www.facebook.com/scoutwindowcleaning",
-                "https://www.instagram.com/scoutwindowcleaning"
+                        "https://www.facebook.com/fridayswindows",
+        "https://www.instagram.com/fridayswindows"
               ]
             })
           }}

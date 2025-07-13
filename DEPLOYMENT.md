@@ -67,7 +67,7 @@ NEXT_PUBLIC_GA_ID=your-google-analytics-id
 RESEND_API_KEY=your-resend-api-key
 
 # Contact Form Email
-CONTACT_EMAIL=hello@scout.work
+CONTACT_EMAIL=hello@friday.work
 ```
 
 ## 📧 Email Integration
@@ -84,8 +84,8 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // In your API route
 await resend.emails.send({
-  from: 'Scout Window Cleaning <hello@scout.work>',
-  to: ['hello@scout.work'],
+  from: 'Friday Window Cleaning <hello@friday.work>',
+  to: ['hello@friday.work'],
   subject: 'New Quote Request',
   html: `
     <h2>New Quote Request</h2>

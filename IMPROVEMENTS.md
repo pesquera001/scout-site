@@ -61,7 +61,7 @@
 
 ### Visual Improvements
 - **Professional Images**: High-quality window cleaning photos
-- **Consistent Branding**: Scout's minimalist aesthetic maintained
+- **Consistent Branding**: Friday's minimalist aesthetic maintained
 - **Responsive Design**: Mobile-first approach
 - **Loading States**: Better user experience with form feedback
 
@@ -103,7 +103,7 @@
 ### Google Analytics Setup
 1. **Create GA4 Property**:
    - Go to [analytics.google.com](https://analytics.google.com)
-   - Create new property for Scout Window Cleaning
+   - Create new property for Friday Window Cleaning
 
 2. **Update Tracking Code**:
    - Replace `GA_MEASUREMENT_ID` in `app/layout.tsx`
@@ -111,12 +111,12 @@
 
 ### Domain & SSL
 1. **Custom Domain**:
-   - Purchase domain (e.g., scoutwindowcleaning.com)
+   - Purchase domain (e.g., fridaywindowcleaning.com)
    - Configure DNS settings
    - Enable SSL certificate
 
 2. **Email Setup**:
-   - Configure business email (hello@scout.work)
+   - Configure business email (hello@friday.work)
    - Set up email forwarding
 
 ### Content Optimization
@@ -177,4 +177,4 @@
 - **Conversion Rate**: Optimize for quote requests
 - **Search Rankings**: Track keyword positions
 
-The Scout website is now production-ready with professional images, functional contact forms, comprehensive SEO, and deployment configurations. The site maintains the minimalist, professional aesthetic while providing all the functionality needed for a successful window cleaning business. 
+The Friday website is now production-ready with professional images, functional contact forms, comprehensive SEO, and deployment configurations. The site maintains the minimalist, professional aesthetic while providing all the functionality needed for a successful window cleaning business. 

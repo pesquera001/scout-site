@@ -1,6 +1,6 @@
-# Scout Window Cleaning Website
+# Friday Window Cleaning Website
 
-A modern, retro-styled website for Scout Window Cleaning services. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+A modern, retro-styled website for Friday Window Cleaning services. Built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
 
 ## Features
 

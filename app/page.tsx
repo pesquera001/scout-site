@@ -9,7 +9,7 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-const ScoutHead = () => (
+const FridayHead = () => (
   <>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -151,7 +151,7 @@ const Nav = () => {
     <header className="bg-white-canvas/80 backdrop-blur-md z-50">
       <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
         <div className="text-3xl md:text-4xl font-display font-bold tracking-[0.3em] text-worn-denim">
-          <a href="/">SCOUT'S</a>
+          <a href="/">FRIDAY'S</a>
         </div>
         
         {/* Desktop Navigation */}
@@ -269,7 +269,7 @@ const CinematicHeroSection = () => {
       >
         <Image
           src="/hero/20250712_1704_90s Film Window Cleaning_remix_01k00hg7b8ffmv0fvvs3q8cbq3(1).png"
-          alt="Scout cleaning a window with a dog nearby"
+          alt="Friday's cleaning a window with a dog nearby"
           fill
           priority
           className="object-cover object-top w-full h-full"
@@ -290,7 +290,7 @@ const CinematicHeroSection = () => {
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4" style={{
             textShadow: '3px 3px 0px var(--saddle-dust), 6px 6px 0px var(--prairie-clay)'
           }}>
-            SCOUT'S
+            FRIDAY'S
           </h1>
           <h2 className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight" style={{
             textShadow: '2px 2px 0px var(--saddle-dust), 4px 4px 0px var(--prairie-clay)'
@@ -320,7 +320,7 @@ const CinematicHeroSection = () => {
           transition={{ duration: 1, delay: 1 }}
           className="font-display text-2xl md:text-4xl text-saddle-dust leading-none"
         >
-          Scout's
+          Friday's
         </motion.div>
         <motion.div 
           initial={{ opacity: 0 }}
@@ -361,7 +361,7 @@ const CinematicHeroSection = () => {
           transition={{ duration: 1, delay: 2 }}
           className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2"
         >
-          Old-school reliability meets a stylist's eye for detail.<br/>Scout's Window Cleaning delivers spotless results and subtle charm — every time.
+          Old-school reliability meets a stylist's eye for detail.<br/>Friday's Window Cleaning delivers spotless results and subtle charm — every time.
         </motion.p>
       </motion.div>
       
@@ -521,7 +521,7 @@ const AboutSection = () => (
         >
           <Image
             src="/hero/IMG_5617.jpg"
-            alt="Scout's Window Cleaning - Professional service"
+            alt="Friday's Window Cleaning - Professional service"
             fill
             className="object-cover"
             priority
@@ -535,7 +535,7 @@ const AboutSection = () => (
         >
           <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-8 retro-shadow">Old-School Values. Spotless Results.</h2>
           <p className="text-lg font-typewriter text-smoke-tin/80 mb-8 leading-relaxed tracking-wide">
-            Scout’s was founded by Aidan on a simple principle:<br />
+            Friday’s was founded by Aidan on a simple principle:<br />
             Do the work well. Do it quietly. Let the results speak for themselves.<br /><br />
             We believe in grace over flash, consistency over noise. Ours is a trade built on trust, and we earn it by showing up clean, working with care, and leaving every space better than we found it.<br /><br />
             No slogans. No fuss. Just honest work, done right.
@@ -842,7 +842,7 @@ const ContactSection = () => {
                   <Mail size={24} className="text-worn-denim" />
                 </div>
                 <h3 className="font-mono font-bold text-worn-denim mb-2">EMAIL</h3>
-                <p className="font-typewriter text-smoke-tin/80">hello@scout.work</p>
+                <p className="font-typewriter text-smoke-tin/80">hello@friday.work</p>
               </div>
               
               <div className="flex flex-col items-center">
@@ -1002,7 +1002,7 @@ const ClientsPage = () => {
           OUR_PORTFOLIO.
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-smoke-tin/80 leading-relaxed tracking-wide">
-          A glimpse into the diverse projects where Scout's has delivered unparalleled clarity.
+          A glimpse into the diverse projects where Friday's has delivered unparalleled clarity.
         </p>
       </div>
       <div className="h-[600px] md:h-[700px] flex items-center justify-center">
@@ -1018,7 +1018,7 @@ const ShopPage = () => {
   const shopItems = [
     {
       id: 1,
-      name: "SCOUT'S_PREMIUM_SQUEEGEE",
+                  name: "FRIDAY'S_PREMIUM_SQUEEGEE",
       price: "$89.99",
       description: "Professional-grade squeegee with precision-engineered blade for streak-free luxury results.",
       image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -1039,7 +1039,7 @@ const ShopPage = () => {
     },
     {
       id: 4,
-      name: "SCOUT'S_LUXURY_CAP",
+                  name: "FRIDAY'S_LUXURY_CAP",
       price: "$39.99",
       description: "Premium cap for those who appreciate true clarity and understated luxury.",
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
@@ -1070,7 +1070,7 @@ const ShopPage = () => {
     <div className="pt-32 pb-16 md:pt-40 md:pb-24">
       <div className="container mx-auto px-6 text-center mb-16">
         <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-worn-denim leading-tight retro-shadow">
-          THE_SCOUT'S_SUPPLY.
+                      THE_FRIDAY'S_SUPPLY.
         </h1>
         <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl font-typewriter text-smoke-tin/80 leading-relaxed tracking-wide">
           Tools and merchandise for those who appreciate true clarity and understated quality.
@@ -1102,7 +1102,7 @@ const Footer = () => (
     <div className="container mx-auto px-6">
       <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
         <div className="md:col-span-1">
-          <h3 className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">SCOUT'S</h3>
+          <h3 className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">FRIDAY'S</h3>
         </div>
         <div>
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">NAVIGATE</h4>
@@ -1117,7 +1117,7 @@ const Footer = () => (
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">CONTACT</h4>
           <ul className="space-y-3 font-typewriter text-smoke-tin/80">
             <li className="tracking-wide">(555) 123-CLEAN</li>
-            <li className="tracking-wide">hello@scout.work</li>
+            <li className="tracking-wide">hello@friday.work</li>
             <li className="tracking-wide">SUNDAY-SATURDAY</li>
             <li className="tracking-wide">7:30 AM - 7:30 PM</li>
           </ul>
@@ -1131,7 +1131,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="mt-16 pt-8 border-t-2 border-saddle-dust/30 text-center">
-        <p className="font-typewriter text-sm text-smoke-tin/60 tracking-wide">© 2025 SCOUT'S_WINDOW_CLEANING. SHOW_UP_CLEAN. LEAVE_CLEANER.</p>
+        <p className="font-typewriter text-sm text-smoke-tin/60 tracking-wide">© 2025 FRIDAY'S_WINDOW_CLEANING. SHOW_UP_CLEAN. LEAVE_CLEANER.</p>
       </div>
     </div>
   </footer>
@@ -1240,7 +1240,7 @@ export default function Home() {
 
   return (
     <>
-      <ScoutHead />
+      <FridayHead />
       <main style={{ opacity: fontsLoaded ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
         {currentPage === '/' ? (
           <>

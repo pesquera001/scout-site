@@ -37,9 +37,9 @@ export async function POST(request: NextRequest) {
     
     try {
       await resend.emails.send({
-        from: 'Scout\'s Window Cleaning <hello@scout.work>',
-        to: ['hello@scout.work'],
-        subject: 'New Quote Request from Scout\'s Website',
+        from: 'Friday\'s Window Cleaning <hello@friday.work>',
+        to: ['hello@friday.work'],
+        subject: 'New Quote Request from Friday\'s Website',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #708B91;">New Quote Request</h2>
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
               </div>
             </div>
             <p style="color: #78736E; font-size: 12px; margin-top: 20px;">
-              This request was submitted from the Scout's Window Cleaning website.
+              This request was submitted from the Friday's Window Cleaning website.
             </p>
           </div>
         `
