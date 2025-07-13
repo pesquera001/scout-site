@@ -248,50 +248,44 @@ const ClientMarquee = () => {
 };
 
 const ServicesSection = () => {
-  const services = [
-    {
-      icon: <Wind />,
-      title: "RESIDENTIAL_CLEANING",
-      description: "For the home that values light and clarity. We handle every pane with blue-collar grace."
-    },
-    {
-      icon: <Layers />,
-      title: "COMMERCIAL_SPACES",
-      description: "A clean facade reflects a sharp business. We provide a discreet, perfect service."
-    },
-    {
-      icon: <Sparkles />,
-      title: "POST_CONSTRUCTION",
-      description: "The final touch. We clear away the dust and reveal the beauty of the new build."
-    }
+  const tabs = [
+    { label: "Exterior Windows", description: "Crystal-clear results for your home's or business's exterior glass. We remove dirt, grime, and water spots for a streak-free shine." },
+    { label: "Interior Windows", description: "Gentle, thorough cleaning for all interior glass. We protect your furnishings and leave every pane spotless." },
+    { label: "Screen Cleaning", description: "We carefully remove, wash, and reinstall screens so your view is as clear as possible." },
+    { label: "Solar Panel Cleaning", description: "Maximize your solar efficiency with safe, residue-free panel cleaning." },
+    { label: "Gutter Cleaning", description: "Prevent water damage and clogs with our thorough gutter clearing and flush." },
   ];
+  const [activeTab, setActiveTab] = React.useState(0);
 
   return (
     <section id="services" className="py-20 md:py-28 bg-white-canvas">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-display text-5xl md:text-6xl text-worn-denim retro-shadow">OUR WORK. YOUR WINDOWS.</h2>
-          <p className="mt-6 max-w-xl mx-auto text-lg font-typewriter text-smoke-tin/80 tracking-wide">
-            Three services. One standard of excellence.
-          </p>
+          <h2 className="font-display text-5xl md:text-6xl text-worn-denim retro-shadow">CLEANING SERVICES</h2>
         </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white p-8 rounded-lg border-2 border-smoke-tin text-center hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
-            >
-              <div className="inline-block p-4 bg-prairie-clay/20 rounded-full text-prairie-clay mb-6">
-                {React.cloneElement(service.icon, { size: 32 })}
-              </div>
-              <h3 className="text-xl font-display font-bold text-smoke-tin mb-4 tracking-wide">{service.title}</h3>
-              <p className="font-typewriter text-smoke-tin/80 leading-relaxed text-sm">{service.description}</p>
-            </motion.div>
-          ))}
+        <div className="flex flex-col items-center">
+          <div className="flex flex-wrap gap-2 md:gap-4 mb-8 justify-center">
+            {tabs.map((tab, idx) => (
+              <button
+                key={tab.label}
+                onClick={() => setActiveTab(idx)}
+                className={`px-4 py-2 rounded-full font-mono text-base md:text-lg transition-colors border-2 focus:outline-none focus:ring-2 focus:ring-worn-denim/50 ${activeTab === idx ? 'bg-worn-denim text-white border-worn-denim' : 'bg-white-canvas text-worn-denim border-worn-denim/40 hover:bg-worn-denim/10'}`}
+                aria-selected={activeTab === idx}
+                aria-controls={`tab-panel-${idx}`}
+                role="tab"
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+          <div
+            id={`tab-panel-${activeTab}`}
+            role="tabpanel"
+            className="max-w-2xl mx-auto bg-white p-8 rounded-lg border-2 border-smoke-tin shadow-md text-center"
+          >
+            <h3 className="font-display text-2xl md:text-3xl text-worn-denim mb-4">{tabs[activeTab].label}</h3>
+            <p className="font-typewriter text-lg text-smoke-tin/90 leading-relaxed">{tabs[activeTab].description}</p>
+          </div>
         </div>
       </div>
     </section>
