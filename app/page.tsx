@@ -193,6 +193,33 @@ const CinematicHeroSection = () => {
         />
       </div>
       
+      {/* Centered Hero Headline - Scout's Window Services (before fade-in) */}
+      <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: (showImage ? 0 : 1) && fontsLoaded ? 1 : 0 }}
+          transition={{ duration: 2, delay: 0.5 }}
+          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-saddle-dust leading-tight retro-shadow mb-4">
+            SCOUT'S
+          </h1>
+          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl text-saddle-dust/90 leading-tight">
+            WINDOW SERVICES
+          </h2>
+        </motion.div>
+      </div>
+      {/* Top Left Branding - Fades in with image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showImage && fontsLoaded ? 1 : 0 }}
+        transition={{ duration: 2, delay: 0.5 }}
+        className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left"
+      >
+        <div className="font-display text-2xl md:text-4xl text-saddle-dust leading-none">Scout's</div>
+        <div className="font-mono text-lg md:text-2xl text-saddle-dust/90 leading-none">Window Services</div>
+      </motion.div>
+      
       {/* Remove two-layer/two-tone headline at top of page */}
       {/* (No headline overlay in center) */}
       {/* New Hero Overlay - Right Side, Cream White Text, Down and Right, Fades in with image */}
@@ -421,7 +448,7 @@ const TestimonialSection = () => {
 };
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [form, setForm] = useState({ name: '', email: '', message: '', phone: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [statusMessage, setStatusMessage] = useState('');
@@ -447,7 +474,7 @@ const ContactSection = () => {
       if (response.ok) {
         setSubmitStatus('success');
         setStatusMessage(data.message);
-        setForm({ name: '', email: '', message: '' });
+        setForm({ name: '', email: '', message: '', phone: '' });
       } else {
         setSubmitStatus('error');
         setStatusMessage(data.error || 'Something went wrong. Please try again.');
@@ -483,6 +510,7 @@ const ContactSection = () => {
         </div>
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
           <InputField icon={<User size={18}/>} type="text" name="name" placeholder="YOUR_NAME" value={form.name} onChange={handleChange} required />
+          <InputField icon={<Phone size={18}/>} type="tel" name="phone" placeholder="YOUR_PHONE" value={form.phone || ''} onChange={handleChange} required />
           <InputField icon={<Mail size={18}/>} type="email" name="email" placeholder="YOUR_EMAIL" value={form.email} onChange={handleChange} required />
           <div className="relative">
              <div className="absolute top-4 left-0 flex items-center pl-4 pointer-events-none text-smoke-tin/50">
