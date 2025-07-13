@@ -91,6 +91,61 @@ const ScoutHead = () => (
 
 const Nav = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [buttonText, setButtonText] = useState("GET_QUOTE");
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [hasScrolledPastMarquee, setHasScrolledPastMarquee] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const marqueeElement = document.querySelector('.marquee-content');
+      if (marqueeElement) {
+        const marqueeBottom = marqueeElement.getBoundingClientRect().bottom;
+        const hasPassed = marqueeBottom < 0;
+        
+        if (hasPassed && !hasScrolledPastMarquee) {
+          setHasScrolledPastMarquee(true);
+          animateButtonText();
+        } else if (!hasPassed && hasScrolledPastMarquee) {
+          setHasScrolledPastMarquee(false);
+          setButtonText("GET_QUOTE");
+        }
+      }
+    };
+
+    const animateButtonText = () => {
+      if (isAnimating) return;
+      setIsAnimating(true);
+      
+      const originalText = "GET_QUOTE";
+      const targetText = "SAME_DAY_QUOTE";
+      
+      // First, delete the original text character by character
+      let currentText = originalText;
+      const deleteInterval = setInterval(() => {
+        if (currentText.length > 0) {
+          currentText = currentText.slice(0, -1);
+          setButtonText(currentText);
+        } else {
+          clearInterval(deleteInterval);
+          
+          // Then type the new text character by character
+          let newText = "";
+          const typeInterval = setInterval(() => {
+            if (newText.length < targetText.length) {
+              newText += targetText[newText.length];
+              setButtonText(newText);
+            } else {
+              clearInterval(typeInterval);
+              setIsAnimating(false);
+            }
+          }, 100); // Type speed
+        }
+      }, 50); // Delete speed
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [hasScrolledPastMarquee, isAnimating]);
 
   return (
     <header className="bg-white-canvas/80 backdrop-blur-md z-50">
@@ -123,9 +178,9 @@ const Nav = () => {
 
         <Button 
           onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter text-sm font-bold tracking-wide px-6 py-2"
+          className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter text-sm font-bold tracking-wide px-6 py-2 transition-all duration-300"
         >
-          GET_QUOTE
+          {buttonText}
         </Button>
         
         <div className="hidden md:flex items-center gap-2">
