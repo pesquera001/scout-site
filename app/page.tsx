@@ -279,10 +279,10 @@ const CinematicHeroSection = () => {
       {/* Centered Hero Headline with Dramatic Entrance */}
       <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, y: 50, scale: 0.9 }}
+          initial={{ opacity: 0, x: -100, scale: 0.9 }}
           animate={{ 
             opacity: (!showImage && fontsLoaded) ? 1 : 0,
-            y: (!showImage && fontsLoaded) ? 0 : 50,
+            x: (!showImage && fontsLoaded) ? 0 : -100,
             scale: (!showImage && fontsLoaded) ? 1 : 0.9
           }}
           transition={{ 
@@ -293,17 +293,17 @@ const CinematicHeroSection = () => {
           className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8"
         >
           <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5, delay: 1.2 }}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
             className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight retro-shadow mb-4"
           >
             SCOUT'S
           </motion.h1>
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 1.8 }}
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
             className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight"
           >
             WINDOW SERVICES
@@ -326,16 +326,16 @@ const CinematicHeroSection = () => {
         className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left"
       >
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
           className="font-display text-2xl md:text-4xl text-saddle-dust leading-none"
         >
           Scout's
         </motion.div>
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.3 }}
           className="font-mono text-xs md:text-base text-saddle-dust/90 leading-none"
         >
@@ -359,16 +359,16 @@ const CinematicHeroSection = () => {
         className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg"
       >
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 1.5 }}
           className="font-display text-2xl md:text-4xl text-saddle-dust leading-none tracking-[0.3em]"
         >
           Timeless Service.<br/>American Grit.
         </motion.h1>
         <motion.p 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 2 }}
           className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2"
         >
