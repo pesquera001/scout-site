@@ -232,10 +232,10 @@ const CinematicHeroSection = () => {
       setTimeout(() => setFontsLoaded(true), 100);
     }
 
-    // Staggered cinematic timing
-    const imageTimer = setTimeout(() => setShowImage(true), 2000);
-    const overlayTimer = setTimeout(() => setShowOverlay(true), 3500);
-    const brandingTimer = setTimeout(() => setShowBranding(true), 4000);
+    // Staggered cinematic timing - adjusted for better text visibility
+    const imageTimer = setTimeout(() => setShowImage(true), 3000);
+    const overlayTimer = setTimeout(() => setShowOverlay(true), 4500);
+    const brandingTimer = setTimeout(() => setShowBranding(true), 5000);
     
     return () => {
       clearTimeout(imageTimer);
@@ -281,16 +281,16 @@ const CinematicHeroSection = () => {
         <motion.div
           initial={{ opacity: 0, x: -100, scale: 0.9 }}
           animate={{ 
-            opacity: (!showImage && fontsLoaded) ? 1 : 0,
-            x: (!showImage && fontsLoaded) ? 0 : -100,
-            scale: (!showImage && fontsLoaded) ? 1 : 0.9
+            opacity: fontsLoaded ? 1 : 0,
+            x: fontsLoaded ? 0 : -100,
+            scale: fontsLoaded ? 1 : 0.9
           }}
           transition={{ 
             duration: 2.5,
             ease: "easeOut",
             delay: 0.8
           }}
-          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8"
+          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
           <motion.h1 
             initial={{ opacity: 0, x: -50 }}
