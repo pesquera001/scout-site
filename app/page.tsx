@@ -101,12 +101,12 @@ const Nav = () => {
         
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="/" className="font-mono text-sm font-light text-worn-denim tracking-wide">HOME</a>
-          <a href="#about" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
-          <a href="#services" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
-          <a href="#process" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
-          <a href="/clients" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
-          <a href="/shop" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
+          <a href="/" className="font-mono text-sm font-bold text-worn-denim tracking-wide">HOME</a>
+          <a href="#about" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
+          <a href="#services" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
+          <a href="#process" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
+          <a href="/clients" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
+          <a href="/shop" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -210,7 +210,7 @@ const CinematicHeroSection = () => {
         </motion.div>
       </div>
       {/* New Hero Overlay - Right Side, Cream White Text, Down and Right */}
-      <div className="absolute top-20 right-4 md:top-32 md:right-8 z-20 text-right w-auto max-w-lg">
+      <div className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg">
         <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-saddle-dust retro-shadow mb-2 md:mb-4 leading-tight drop-shadow-lg">Timeless Service.<br/>American Grit.</h1>
         <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2 drop-shadow">Old-school reliability meets a stylist’s eye for detail.<br/>Scout’s Window Cleaning delivers spotless results and subtle charm — every time.</p>
       </div>
