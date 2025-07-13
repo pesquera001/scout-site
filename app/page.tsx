@@ -127,6 +127,13 @@ const Nav = () => {
         >
           GET_QUOTE
         </Button>
+        
+        <div className="hidden md:flex items-center gap-2">
+          <Phone size={16} className="text-worn-denim" />
+          <a href="tel:(555)123-CLEAN" className="font-mono text-sm font-bold text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">
+            (555) 123-CLEAN
+          </a>
+        </div>
       </div>
 
       {/* Mobile Navigation Menu */}
@@ -376,18 +383,12 @@ const AboutSection = () => (
           className="w-full h-96 md:h-[500px] bg-saddle-dust rounded-lg relative flex items-center justify-center text-white/70 border-4 border-prairie-clay/50 overflow-hidden"
         >
           <Image
-            src={HERO_IMAGE_URL}
-            alt="Luxury window cleaning - Scout's"
+            src="/hero/IMG_5617.HEIC"
+            alt="Scout's Window Cleaning - Professional service"
             fill
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
-            <div className="text-center">
-              <p className="font-display text-2xl tracking-wide text-white-canvas retro-shadow-denim">LUXURY_WINDOWS</p>
-              <p className="font-typewriter text-sm mt-2 text-white-canvas/80">Pristine clarity for discerning clients.</p>
-            </div>
-          </div>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, x: 20 }}
