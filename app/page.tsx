@@ -232,8 +232,8 @@ const CinematicHeroSection = () => {
       setTimeout(() => setFontsLoaded(true), 100);
     }
 
-    // Simplified timing for clean fade-in effect
-    const imageTimer = setTimeout(() => setShowImage(true), 2000);
+    // Text shows immediately, fades out as image fades in
+    const imageTimer = setTimeout(() => setShowImage(true), 1500);
     const overlayTimer = setTimeout(() => setShowOverlay(true), 3000);
     const brandingTimer = setTimeout(() => setShowBranding(true), 3500);
     
@@ -276,15 +276,14 @@ const CinematicHeroSection = () => {
         />
       </motion.div>
       
-      {/* Centered Hero Headline - Simple Fade In */}
+      {/* Centered Hero Headline - Immediate Show, Fade Out with Image */}
       <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: fontsLoaded ? 1 : 0 }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: showImage ? 0 : 1 }}
           transition={{ 
             duration: 2,
-            ease: "easeOut",
-            delay: 1
+            ease: "easeOut"
           }}
           className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
