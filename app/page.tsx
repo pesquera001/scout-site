@@ -229,7 +229,16 @@ const CinematicHeroSection = () => {
 };
 
 const ClientMarquee = () => {
-  const clients = ["RESIDENTIAL_HOMES", "STOREFRONTS", "MODERN_LOFTS", "HISTORIC_BUILDINGS", "OFFICE_PARKS", "BOUTIQUE_HOTELS"];
+  const clients = [
+    "RESIDENTIAL_HOMES",
+    "STOREFRONTS",
+    "MODERN_LOFTS",
+    "HISTORIC_BUILDINGS",
+    "OFFICE_PARKS",
+    "BOUTIQUE_HOTELS",
+    "RECENT_CONSTRUCTIONS",
+    "INDUSTRIAL_BUILDINGS"
+  ];
   const extendedClients = [...clients, ...clients];
 
   return (
