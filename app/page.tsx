@@ -285,12 +285,16 @@ const CinematicHeroSection = () => {
             duration: 2,
             ease: "easeOut"
           }}
-          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
+          className="w-full absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight retro-shadow mb-4">
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4" style={{
+            textShadow: '3px 3px 0px var(--saddle-dust), 6px 6px 0px var(--prairie-clay)'
+          }}>
             SCOUT'S
           </h1>
-          <h2 className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight">
+          <h2 className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight" style={{
+            textShadow: '2px 2px 0px var(--saddle-dust), 4px 4px 0px var(--prairie-clay)'
+          }}>
             WINDOW SERVICES
           </h2>
         </motion.div>
