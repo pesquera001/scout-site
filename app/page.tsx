@@ -570,20 +570,6 @@ const TestimonialSection = () => {
     );
 };
 
-const InputField = React.memo(({ icon, ...props }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement>) => (
-  <div className="relative">
-    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-      {icon}
-    </div>
-    <input
-      {...props}
-      className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
-    />
-  </div>
-));
-
-InputField.displayName = 'InputField';
-
 const ContactSection = () => {
   const [form, setForm] = useState({
     name: '',
@@ -595,7 +581,8 @@ const ContactSection = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    const { name, value } = e.target;
+    setForm(prev => ({ ...prev, [name]: value }));
   }, []);
   
   const handleSubmit = async (e: React.FormEvent) => {
@@ -657,35 +644,51 @@ const ContactSection = () => {
             className="space-y-6"
           >
             <div className="grid md:grid-cols-2 gap-6">
-              <InputField
-                icon={<User size={20} />}
-                type="text"
-                name="name"
-                placeholder="YOUR_NAME"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-              <InputField
-                icon={<Mail size={20} />}
-                type="email"
-                name="email"
-                placeholder="YOUR_EMAIL"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User size={20} className="text-worn-denim/60" />
+                </div>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="YOUR_NAME"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                />
+              </div>
+              
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <Mail size={20} className="text-worn-denim/60" />
+                </div>
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="YOUR_EMAIL"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                />
+              </div>
             </div>
             
-            <InputField
-              icon={<Phone size={20} />}
-              type="tel"
-              name="phone"
-              placeholder="YOUR_PHONE"
-              value={form.phone}
-              onChange={handleChange}
-              required
-            />
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Phone size={20} className="text-worn-denim/60" />
+              </div>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="YOUR_PHONE"
+                value={form.phone}
+                onChange={handleChange}
+                required
+                className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+              />
+            </div>
             
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
