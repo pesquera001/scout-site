@@ -209,11 +209,21 @@ const CinematicHeroSection = () => {
           </h2>
         </motion.div>
       </div>
-      {/* New Hero Overlay - Right Side, Cream White Text, Down and Right */}
-      <div className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg">
+      {/* Top Left Branding */}
+      <div className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left">
+        <div className="font-display text-2xl md:text-4xl text-saddle-dust retro-shadow leading-none">Scout's</div>
+        <div className="font-mono text-lg md:text-2xl text-saddle-dust/90 leading-none">Window Services</div>
+      </div>
+      {/* New Hero Overlay - Right Side, Cream White Text, Down and Right, Fades in with image */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: showImage && fontsLoaded ? 1 : 0 }}
+        transition={{ duration: 2, delay: 0.5 }}
+        className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg"
+      >
         <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-saddle-dust retro-shadow mb-2 md:mb-4 leading-tight drop-shadow-lg">Timeless Service.<br/>American Grit.</h1>
         <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2 drop-shadow">Old-school reliability meets a stylist’s eye for detail.<br/>Scout’s Window Cleaning delivers spotless results and subtle charm — every time.</p>
-      </div>
+      </motion.div>
     </section>
   );
 };
