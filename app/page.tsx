@@ -105,8 +105,6 @@ const Nav = () => {
           <a href="#about" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
           <a href="#services" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
           <a href="#process" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
-          <a href="/clients" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
-          <a href="/shop" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">SHOP</a>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -139,8 +137,6 @@ const Nav = () => {
             <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">ABOUT</a>
             <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SERVICES</a>
             <a href="#process" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">PROCESS</a>
-            <a href="/clients" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">CLIENTS</a>
-            <a href="/shop" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SHOP</a>
           </nav>
         </div>
       )}
@@ -312,34 +308,42 @@ const ServicesSection = () => {
 
 const ProcessSection = () => {
   const steps = [
-    { number: "01", title: "REQUEST_A_QUOTE", description: "Tell us about the job. We provide a clear, honest price. No fluff." },
-    { number: "02", title: "WE_ARRIVE_&_WORK", description: "Punctual, prepared, and professional. We get straight to it." },
-    { number: "03", title: "JOB_DONE._VIEW_CLEAR.", description: "We leave your space not just clean, but cared for. Every time, without exception." }
+    { number: "01", title: "REQUEST_A_QUOTE", description: "Tell us about the job. We provide a clear, honest price. No fluff.", icon: <Mail size={36} className="mx-auto text-saddle-dust" /> },
+    { number: "02", title: "WE_ARRIVE_&_WORK", description: "Punctual, prepared, and professional. We get straight to it.", icon: <ShieldCheck size={36} className="mx-auto text-saddle-dust" /> },
+    { number: "03", title: "JOB_DONE._VIEW_CLEAR.", description: "We leave your space not just clean, but cared for. Every time, without exception.", icon: <Sparkles size={36} className="mx-auto text-saddle-dust" /> }
   ];
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-prairie-clay text-white-canvas">
-      <div className="container mx-auto px-6">
+    <section id="process" className="py-20 md:py-28 bg-prairie-clay text-white-canvas relative overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'40\' height=\'40\' fill=\'%23E5D3BD\' fill-opacity=\'0.2\'/%3E%3C/svg%3E") repeat' }} />
+      <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-display text-5xl md:text-6xl text-white-canvas retro-shadow-denim">THE PROCESS.</h2>
           <p className="mt-6 max-w-xl mx-auto text-lg font-typewriter text-white-canvas/80 tracking-wide">
             Simple. Efficient. Done right.
           </p>
         </div>
-        <div className="grid md:grid-cols-3 gap-8 md:gap-16">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-0 relative">
           {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="text-center relative"
-            >
-              <div className="font-display text-7xl text-white-canvas/50 mb-6 retro-shadow-denim">{step.number}</div>
-              <h3 className="text-xl font-mono font-bold text-white-canvas mb-4 tracking-wide">{step.title}</h3>
-              <p className="font-typewriter text-white-canvas/80 text-sm leading-relaxed">{step.description}</p>
-            </motion.div>
+            <React.Fragment key={step.number}>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.5 }}
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="flex-1 min-w-[220px] max-w-xs bg-white-canvas/10 border border-saddle-dust/40 rounded-2xl p-8 mx-2 text-center shadow-lg relative"
+              >
+                <div className="mb-4">{step.icon}</div>
+                <div className="font-display text-4xl text-saddle-dust mb-2 retro-shadow-denim">{step.number}</div>
+                <h3 className="text-xl font-mono font-bold text-white-canvas mb-4 tracking-wide">{step.title}</h3>
+                <p className="font-typewriter text-white-canvas/80 text-base leading-relaxed">{step.description}</p>
+              </motion.div>
+              {/* Connecting line except after last step */}
+              {index < steps.length - 1 && (
+                <div className="hidden md:block h-1 w-16 bg-saddle-dust/40 rounded-full mx-4 my-auto" />
+              )}
+            </React.Fragment>
           ))}
         </div>
       </div>
@@ -796,8 +800,6 @@ const Footer = () => (
             <li><a href="#services" className="hover:text-worn-denim tracking-wide">SERVICES</a></li>
             <li><a href="#process" className="hover:text-worn-denim tracking-wide">PROCESS</a></li>
             <li><a href="#about" className="hover:text-worn-denim tracking-wide">ABOUT</a></li>
-            <li><a href="/clients" className="hover:text-worn-denim tracking-wide">CLIENTS</a></li>
-            <li><a href="/shop" className="hover:text-worn-denim tracking-wide">SHOP</a></li>
           </ul>
         </div>
         <div>
