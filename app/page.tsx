@@ -185,12 +185,11 @@ const CinematicHeroSection = () => {
         style={{ opacity: showImage ? 1 : 0 }}
       >
         <Image
-          src={HERO_IMAGE_URL}
-          alt="Modern luxury home with clean windows"
+          src="/hero/20250712_1704_90s Film Window Cleaning_remix_01k00hg7b8ffmv0fvvs3q8cbq3(1).png"
+          alt="Scout cleaning a window with a dog nearby"
           fill
           priority
-          className="object-cover object-[center_90%] w-full h-full"
-          sizes="100vw"
+          className="object-cover object-bottom w-full h-full"
         />
       </div>
       
