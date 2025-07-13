@@ -232,10 +232,10 @@ const CinematicHeroSection = () => {
       setTimeout(() => setFontsLoaded(true), 100);
     }
 
-    // Staggered cinematic timing - adjusted for better text visibility
-    const imageTimer = setTimeout(() => setShowImage(true), 3000);
-    const overlayTimer = setTimeout(() => setShowOverlay(true), 4500);
-    const brandingTimer = setTimeout(() => setShowBranding(true), 5000);
+    // Simplified timing for clean fade-in effect
+    const imageTimer = setTimeout(() => setShowImage(true), 2000);
+    const overlayTimer = setTimeout(() => setShowOverlay(true), 3000);
+    const brandingTimer = setTimeout(() => setShowBranding(true), 3500);
     
     return () => {
       clearTimeout(imageTimer);
@@ -276,38 +276,24 @@ const CinematicHeroSection = () => {
         />
       </motion.div>
       
-      {/* Centered Hero Headline with Dramatic Entrance */}
+      {/* Centered Hero Headline - Simple Fade In */}
       <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
         <motion.div
-          initial={{ opacity: 0, x: -100, scale: 0.9 }}
-          animate={{ 
-            opacity: fontsLoaded ? 1 : 0,
-            x: fontsLoaded ? 0 : -100,
-            scale: fontsLoaded ? 1 : 0.9
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: fontsLoaded ? 1 : 0 }}
           transition={{ 
-            duration: 2.5,
+            duration: 2,
             ease: "easeOut",
-            delay: 0.8
+            delay: 1
           }}
           className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
-          <motion.h1 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-            className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight retro-shadow mb-4"
-          >
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight retro-shadow mb-4">
             SCOUT'S
-          </motion.h1>
-          <motion.h2 
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 1.8, ease: "easeOut" }}
-            className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight"
-          >
+          </h1>
+          <h2 className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight">
             WINDOW SERVICES
-          </motion.h2>
+          </h2>
         </motion.div>
       </div>
       
