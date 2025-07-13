@@ -193,27 +193,8 @@ const CinematicHeroSection = () => {
         />
       </div>
       
-      {/* Intro Text - "Scout's" and "Window Services" */}
-      <div className="relative z-10 w-full text-center px-6 flex flex-col items-center justify-center">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: (showImage ? 0 : 1) && fontsLoaded ? 1 : 0 }}
-          transition={{ duration: 2, delay: 0.5 }}
-          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-        >
-          <h1 className="font-display text-6xl md:text-8xl lg:text-9xl text-white leading-tight retro-shadow-clay mb-4">
-            <span className="text-saddle-dust">SCOUT'S</span>
-          </h1>
-          <h2 className="font-mono text-3xl md:text-4xl lg:text-5xl text-white leading-tight retro-shadow-denim">
-            <span className="text-saddle-dust">WINDOW SERVICES</span>
-          </h2>
-        </motion.div>
-      </div>
-      {/* Top Left Branding */}
-      <div className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left">
-        <div className="font-display text-2xl md:text-4xl text-saddle-dust retro-shadow leading-none">Scout's</div>
-        <div className="font-mono text-lg md:text-2xl text-saddle-dust/90 leading-none">Window Services</div>
-      </div>
+      {/* Remove two-layer/two-tone headline at top of page */}
+      {/* (No headline overlay in center) */}
       {/* New Hero Overlay - Right Side, Cream White Text, Down and Right, Fades in with image */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -401,7 +382,7 @@ const TestimonialSection = () => {
     const [current, setCurrent] = useState(0);
     const testimonials = [
         { quote: "Quiet, clean, and gets it done. The kind of company you want on your street.", author: "S. ASHFORD" },
-        { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "J. CHEN, ARCHITECT" },
+        { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "GENERAL CONTRACTOR" },
         { quote: "They just show up and do the job right. No fuss. It's refreshing.", author: "T. DAMONS" }
     ];
 
