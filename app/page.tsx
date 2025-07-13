@@ -400,9 +400,9 @@ const AboutSection = () => (
 const TestimonialSection = () => {
     const [current, setCurrent] = useState(0);
     const testimonials = [
-        { quote: "Quiet, clean, and gets it done. The kind of company you want on your street.", author: "S. MILLER" },
+        { quote: "Quiet, clean, and gets it done. The kind of company you want on your street.", author: "S. ASHFORD" },
         { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "J. CHEN, ARCHITECT" },
-        { quote: "They just show up and do the job right. No fuss. It's refreshing.", author: "T. DAVIS" }
+        { quote: "They just show up and do the job right. No fuss. It's refreshing.", author: "T. DAMONS" }
     ];
 
     useEffect(() => {
