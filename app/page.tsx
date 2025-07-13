@@ -285,7 +285,7 @@ const CinematicHeroSection = () => {
             duration: 2,
             ease: "easeOut"
           }}
-          className="w-full absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
+          className="w-full absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
           <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4" style={{
             textShadow: '3px 3px 0px var(--saddle-dust), 6px 6px 0px var(--prairie-clay)'
