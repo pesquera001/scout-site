@@ -541,7 +541,7 @@ const ContactSection = () => {
   const InputField = ({ icon, ...props }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement>) => (
     <div className="relative">
       <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <div className="text-worn-denim/60">{icon}</div>
+        {icon}
       </div>
       <input
         {...props}

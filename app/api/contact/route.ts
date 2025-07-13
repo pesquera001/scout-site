@@ -4,10 +4,10 @@ import { Resend } from 'resend';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, phone, message } = body;
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
             <div style="background: #f9f8f5; padding: 20px; border-radius: 8px;">
               <p><strong>Name:</strong> ${name}</p>
               <p><strong>Email:</strong> ${email}</p>
+              <p><strong>Phone:</strong> ${phone}</p>
               <p><strong>Message:</strong></p>
               <div style="background: white; padding: 15px; border-radius: 4px; margin-top: 10px;">
                 ${message.replace(/\n/g, '<br>')}
