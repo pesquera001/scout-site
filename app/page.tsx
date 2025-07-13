@@ -225,8 +225,8 @@ const CinematicHeroSection = () => {
         transition={{ duration: 2, delay: 0.5 }}
         className="absolute top-32 right-4 md:top-44 md:right-8 z-20 text-right w-auto max-w-lg"
       >
-        <h1 className="font-display text-3xl md:text-5xl lg:text-6xl text-saddle-dust retro-shadow mb-2 md:mb-4 leading-tight drop-shadow-lg">Timeless Service.<br/>American Grit.</h1>
-        <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2 drop-shadow">Old-school reliability meets a stylist’s eye for detail.<br/>Scout’s Window Cleaning delivers spotless results and subtle charm — every time.</p>
+        <h1 className="font-display text-2xl md:text-4xl text-saddle-dust leading-none tracking-[0.3em]">Timeless Service.<br/>American Grit.</h1>
+        <p className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2">Old-school reliability meets a stylist's eye for detail.<br/>Scout's Window Cleaning delivers spotless results and subtle charm — every time.</p>
       </motion.div>
     </section>
   );
@@ -429,25 +429,72 @@ const TestimonialSection = () => {
     }, [current, testimonials.length]);
 
     return (
-        <section className="py-20 md:py-28 bg-saddle-dust">
-            <div className="container mx-auto px-6 text-center">
-                <div className="max-w-4xl mx-auto">
+        <section className="py-20 md:py-28 bg-saddle-dust relative overflow-hidden">
+            {/* Subtle background pattern */}
+            <div className="absolute inset-0 opacity-5 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'60\' height=\'60\' fill=\'%23F9F8F5\' fill-opacity=\'0.3\'/%3E%3C/svg%3E") repeat' }} />
+            
+            {/* Decorative elements */}
+            <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white-canvas/20 rounded-full"></div>
+            <div className="absolute bottom-10 right-10 w-16 h-16 border-2 border-white-canvas/20 rounded-full"></div>
+            <div className="absolute top-1/2 left-1/4 w-12 h-12 border border-white-canvas/10 rounded-full"></div>
+            
+            <div className="container mx-auto px-6 text-center relative z-10">
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="mb-12"
+                >
+                    <h2 className="font-display text-4xl md:text-5xl text-white-canvas mb-4">WHAT_CLIENTS_SAY</h2>
+                    <div className="w-24 h-1 bg-white-canvas/30 mx-auto mb-8"></div>
+                </motion.div>
+                
+                <div className="max-w-4xl mx-auto relative">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={current}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5 }}
+                            className="bg-white-canvas/10 backdrop-blur-sm border border-white-canvas/20 rounded-2xl p-8 md:p-12 shadow-xl"
                         >
-                            <p className="font-typewriter text-2xl md:text-3xl text-smoke-tin leading-relaxed tracking-wide">
+                            <div className="mb-6">
+                                <svg className="w-12 h-12 mx-auto text-white-canvas/60" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                                </svg>
+                            </div>
+                            
+                            <p className="font-typewriter text-xl md:text-2xl text-white-canvas leading-relaxed tracking-wide mb-8">
                                 "{testimonials[current].quote}"
                             </p>
-                            <p className="mt-8 font-mono font-bold tracking-[0.2em] text-worn-denim uppercase text-sm">
-                                — {testimonials[current].author}
-                            </p>
+                            
+                            <div className="flex items-center justify-center gap-4">
+                                <div className="w-12 h-12 bg-white-canvas/20 rounded-full flex items-center justify-center">
+                                    <svg className="w-6 h-6 text-white-canvas" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.31 7.526c-.099-.807.528-1.526 1.348-1.526.771 0 1.377.676 1.28 1.451l-.757 6.053c-.035.283-.276.496-.561.496s-.526-.213-.562-.496l-.748-5.978zm1.31 10.724c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+                                    </svg>
+                                </div>
+                                <p className="font-mono font-bold tracking-[0.2em] text-white-canvas/90 uppercase text-sm">
+                                    — {testimonials[current].author}
+                                </p>
+                            </div>
                         </motion.div>
                     </AnimatePresence>
+                    
+                    {/* Testimonial indicators */}
+                    <div className="flex justify-center gap-2 mt-8">
+                        {testimonials.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrent(index)}
+                                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                                    current === index ? 'bg-white-canvas' : 'bg-white-canvas/30'
+                                }`}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
@@ -455,13 +502,17 @@ const TestimonialSection = () => {
 };
 
 const ContactSection = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '', phone: '' });
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [statusMessage, setStatusMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
-
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -470,80 +521,182 @@ const ContactSection = () => {
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(form),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
       });
-
-      const data = await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
-        setStatusMessage(data.message);
-        setForm({ name: '', email: '', message: '', phone: '' });
+        setForm({ name: '', email: '', phone: '', message: '' });
       } else {
         setSubmitStatus('error');
-        setStatusMessage(data.error || 'Something went wrong. Please try again.');
       }
     } catch (error) {
       setSubmitStatus('error');
-      setStatusMessage('Network error. Please check your connection and try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  
+
   const InputField = ({ icon, ...props }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement>) => (
     <div className="relative">
-      <div className="absolute inset-y-0 left-0 flex items-center pl-4 pointer-events-none text-smoke-tin/50">
-        {icon}
+      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <div className="text-worn-denim/60">{icon}</div>
       </div>
       <input
         {...props}
-        className="w-full pl-12 pr-4 py-4 bg-white border-2 border-saddle-dust/50 font-typewriter placeholder:text-smoke-tin/50 focus:ring-2 focus:ring-worn-denim focus:border-worn-denim outline-none transition-shadow tracking-wide"
+        className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
       />
     </div>
   );
 
   return (
-    <section id="contact" className="py-20 md:py-28 bg-smoke-tin text-white-canvas">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="font-display text-5xl md:text-6xl retro-shadow-clay">REQUEST_A_QUOTE.</h2>
-          <p className="mt-6 max-w-xl mx-auto text-lg font-typewriter opacity-80 tracking-wide">
-            We clean. You don't have to. Tell us what you need.
+    <section id="contact" className="py-20 md:py-28 bg-white-canvas relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-5 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'40\' height=\'40\' fill=\'%23708B91\' fill-opacity=\'0.1\'/%3E%3C/svg%3E") repeat' }} />
+      
+      {/* Decorative elements */}
+      <div className="absolute top-20 right-20 w-32 h-32 border-2 border-worn-denim/10 rounded-full"></div>
+      <div className="absolute bottom-20 left-20 w-24 h-24 border border-worn-denim/10 rounded-full"></div>
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-6">GET_YOUR_QUOTE</h2>
+          <div className="w-32 h-1 bg-worn-denim/30 mx-auto mb-8"></div>
+          <p className="max-w-2xl mx-auto text-lg font-typewriter text-smoke-tin/80 tracking-wide">
+            Tell us about your project. We'll provide a clear, honest price. No fluff, just straight talk.
           </p>
-        </div>
-        <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-6">
-          <InputField icon={<User size={18}/>} type="text" name="name" placeholder="YOUR_NAME" value={form.name} onChange={handleChange} required />
-          <InputField icon={<Phone size={18}/>} type="tel" name="phone" placeholder="YOUR_PHONE" value={form.phone || ''} onChange={handleChange} required />
-          <InputField icon={<Mail size={18}/>} type="email" name="email" placeholder="YOUR_EMAIL" value={form.email} onChange={handleChange} required />
-          <div className="relative">
-             <div className="absolute top-4 left-0 flex items-center pl-4 pointer-events-none text-smoke-tin/50">
-                <MessageSquare size={18}/>
-             </div>
-             <textarea name="message" placeholder="PROJECT_DETAILS" value={form.message} onChange={handleChange} required rows={4} className="w-full pl-12 pr-4 py-4 bg-white text-smoke-tin border-2 border-saddle-dust/50 font-typewriter placeholder:text-smoke-tin/50 focus:ring-2 focus:ring-prairie-clay focus:border-prairie-clay outline-none transition-shadow resize-none tracking-wide"></textarea>
-          </div>
-          <Button 
-            type="submit" 
-            size="lg" 
-            disabled={isSubmitting}
-            className="w-full bg-prairie-clay hover:bg-opacity-90 py-4 font-typewriter font-bold tracking-wide text-base disabled:opacity-50 disabled:cursor-not-allowed"
+        </motion.div>
+
+        <div className="max-w-2xl mx-auto">
+          <motion.form
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            onSubmit={handleSubmit}
+            className="space-y-6"
           >
-            {isSubmitting ? 'SENDING...' : 'SUBMIT_REQUEST'}
-          </Button>
-          
-          {submitStatus !== 'idle' && (
-            <div className={`mt-4 p-4 rounded-lg font-typewriter text-sm ${
-              submitStatus === 'success' 
-                ? 'bg-green-100 text-green-800 border border-green-200' 
-                : 'bg-red-100 text-red-800 border border-red-200'
-            }`}>
-              {statusMessage}
+            <div className="grid md:grid-cols-2 gap-6">
+              <InputField
+                icon={<User size={20} />}
+                type="text"
+                name="name"
+                placeholder="YOUR_NAME"
+                value={form.name}
+                onChange={handleChange}
+                required
+              />
+              <InputField
+                icon={<Mail size={20} />}
+                type="email"
+                name="email"
+                placeholder="YOUR_EMAIL"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
             </div>
-          )}
-        </form>
+            
+            <InputField
+              icon={<Phone size={20} />}
+              type="tel"
+              name="phone"
+              placeholder="YOUR_PHONE"
+              value={form.phone}
+              onChange={handleChange}
+              required
+            />
+            
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
+                <MessageSquare size={20} className="text-worn-denim/60" />
+              </div>
+              <textarea
+                name="message"
+                placeholder="TELL_US_ABOUT_YOUR_PROJECT"
+                value={form.message}
+                onChange={handleChange}
+                required
+                rows={6}
+                className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter resize-none"
+              />
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: submitStatus !== 'idle' ? 1 : 0 }}
+              className="text-center"
+            >
+              {submitStatus === 'success' && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
+                  Message sent successfully! We'll get back to you soon.
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
+                  Something went wrong. Please try again or call us directly.
+                </div>
+              )}
+            </motion.div>
+
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="text-center"
+            >
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter font-bold tracking-wide px-8 py-4 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                {isSubmitting ? 'SENDING...' : 'SEND_MESSAGE'}
+                <ArrowRight className="ml-2 w-5 h-5" />
+              </Button>
+            </motion.div>
+          </motion.form>
+          
+          {/* Contact info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-16 text-center"
+          >
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
+                  <Phone size={24} className="text-worn-denim" />
+                </div>
+                <h3 className="font-mono font-bold text-worn-denim mb-2">PHONE</h3>
+                <p className="font-typewriter text-smoke-tin/80">(555) 123-CLEAN</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
+                  <Mail size={24} className="text-worn-denim" />
+                </div>
+                <h3 className="font-mono font-bold text-worn-denim mb-2">EMAIL</h3>
+                <p className="font-typewriter text-smoke-tin/80">hello@scout.work</p>
+              </div>
+              
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
+                  <Calendar size={24} className="text-worn-denim" />
+                </div>
+                <h3 className="font-mono font-bold text-worn-denim mb-2">HOURS</h3>
+                <p className="font-typewriter text-smoke-tin/80">MON-FRI 8AM-6PM</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
