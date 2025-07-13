@@ -378,9 +378,12 @@ const AboutSection = () => (
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-8 retro-shadow">HONEST WORK.<br />MINIMAL AESTHETICS.</h2>
+          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-8 retro-shadow">Old-School Values. Spotless Results.</h2>
           <p className="text-lg font-typewriter text-smoke-tin/80 mb-8 leading-relaxed tracking-wide">
-            Scout's was founded on a simple principle: do the job well, do it quietly, and let the results speak for themselves. We are a team that finds grace in labor and beauty in simplicity. We show up clean. We leave things cleaner.
+            Scout’s was founded by Aidan on a simple principle:<br />
+            Do the work well. Do it quietly. Let the results speak for themselves.<br /><br />
+            We believe in grace over flash, consistency over noise. Ours is a trade built on trust, and we earn it by showing up clean, working with care, and leaving every space better than we found it.<br /><br />
+            No slogans. No fuss. Just honest work, done right.
           </p>
           <div className="grid grid-cols-2 gap-6">
             <div className="flex items-center gap-3">
