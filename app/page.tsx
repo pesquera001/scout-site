@@ -252,6 +252,7 @@ const ServicesSection = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-5xl md:text-6xl text-worn-denim retro-shadow">CLEANING SERVICES</h2>
+          <p className="mt-4 max-w-xl mx-auto text-lg font-typewriter text-smoke-tin/80 tracking-wide">Clean is expected. Care is guaranteed.</p>
         </div>
         <div className="flex flex-col items-center">
           <div className="flex flex-wrap gap-2 md:gap-4 mb-8 justify-center">
@@ -286,7 +287,7 @@ const ProcessSection = () => {
   const steps = [
     { number: "01", title: "REQUEST_A_QUOTE", description: "Tell us about the job. We provide a clear, honest price. No fluff." },
     { number: "02", title: "WE_ARRIVE_&_WORK", description: "Punctual, prepared, and professional. We get straight to it." },
-    { number: "03", title: "JOB_DONE._VIEW_CLEAR.", description: "We leave your space cleaner than we found it. That's the point." }
+    { number: "03", title: "JOB_DONE._VIEW_CLEAR.", description: "We leave your space not just clean, but cared for. Every time, without exception." }
   ];
 
   return (
