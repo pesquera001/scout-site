@@ -95,7 +95,7 @@ const Nav = () => {
   return (
     <header className="bg-white-canvas/80 backdrop-blur-md z-50">
       <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
-        <div className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">
+        <div className="text-3xl md:text-4xl font-display font-bold tracking-[0.3em] text-worn-denim">
           <a href="/">SCOUT'S</a>
         </div>
         
@@ -217,7 +217,7 @@ const CinematicHeroSection = () => {
         className="absolute left-4 top-4 md:left-10 md:top-10 z-30 text-left"
       >
         <div className="font-display text-2xl md:text-4xl text-saddle-dust leading-none">Scout's</div>
-        <div className="font-mono text-lg md:text-2xl text-saddle-dust/90 leading-none">Window Services</div>
+        <div className="font-mono text-xs md:text-base text-saddle-dust/90 leading-none">Window Services</div>
       </motion.div>
       
       {/* Remove two-layer/two-tone headline at top of page */}
@@ -397,7 +397,7 @@ const AboutSection = () => (
             </div>
             <div className="flex items-center gap-3">
               <Check className="text-prairie-clay" size={20} />
-              <span className="font-mono text-sm tracking-wide">DEADPAN_PROFESSIONALISM</span>
+              <span className="font-mono text-sm tracking-wide">TIMELESS_PROFESSIONALISM</span>
             </div>
           </div>
         </motion.div>
