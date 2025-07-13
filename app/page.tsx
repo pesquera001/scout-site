@@ -298,7 +298,20 @@ const ServicesSection = () => {
             className="max-w-2xl mx-auto bg-white p-8 rounded-lg border-2 border-smoke-tin shadow-md text-center"
           >
             <h3 className="font-display text-2xl md:text-3xl text-worn-denim mb-4">{tabs[activeTab].label}</h3>
-            <p className="font-typewriter text-lg text-smoke-tin/90 leading-relaxed">{tabs[activeTab].description}</p>
+            <p className="font-typewriter text-lg text-smoke-tin/90 leading-relaxed mb-6">{tabs[activeTab].description}</p>
+            
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              <Button
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter font-bold tracking-wide px-6 py-3 text-base transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                SAME_DAY_QUOTE
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -567,7 +580,7 @@ const ContactSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-6">GET_YOUR_QUOTE</h2>
+          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-6">SAME_DAY_QUOTE</h2>
           <div className="w-32 h-1 bg-worn-denim/30 mx-auto mb-8"></div>
           <p className="max-w-2xl mx-auto text-lg font-typewriter text-smoke-tin/80 tracking-wide">
             Tell us about your project. We'll provide a clear, honest price. No fluff, just straight talk.
