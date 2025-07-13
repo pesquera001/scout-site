@@ -732,7 +732,7 @@ const ContactSection = () => {
                 disabled={isSubmitting}
                 className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter font-bold tracking-wide px-8 py-4 text-lg transition-all duration-300 shadow-lg hover:shadow-xl"
               >
-                {isSubmitting ? 'SENDING...' : 'SEND_MESSAGE'}
+                {isSubmitting ? 'SENDING...' : 'GET_QUOTE'}
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>
@@ -1036,6 +1036,8 @@ const Footer = () => (
           <ul className="space-y-3 font-typewriter text-smoke-tin/80">
             <li className="tracking-wide">(555) 123-CLEAN</li>
             <li className="tracking-wide">hello@scout.work</li>
+            <li className="tracking-wide">SUNDAY-SATURDAY</li>
+            <li className="tracking-wide">7:30 AM - 7:30 PM</li>
           </ul>
         </div>
         <div>
