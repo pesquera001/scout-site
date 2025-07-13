@@ -290,13 +290,13 @@ const CinematicHeroSection = () => {
             ease: "easeOut",
             delay: 0.8
           }}
-          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 max-w-4xl mx-auto"
         >
           <motion.h1 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 1.2 }}
-            className="font-display text-6xl md:text-8xl lg:text-9xl text-saddle-dust leading-tight retro-shadow mb-4"
+            className="font-display text-5xl md:text-7xl lg:text-8xl text-saddle-dust leading-tight retro-shadow mb-4"
           >
             SCOUT'S
           </motion.h1>
@@ -304,7 +304,7 @@ const CinematicHeroSection = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 1.8 }}
-            className="font-mono text-3xl md:text-4xl lg:text-5xl text-saddle-dust/90 leading-tight"
+            className="font-mono text-2xl md:text-3xl lg:text-4xl text-saddle-dust/90 leading-tight"
           >
             WINDOW SERVICES
           </motion.h2>
