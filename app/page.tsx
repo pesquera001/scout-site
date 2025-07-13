@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, Check, Phone, Mail, ShieldCheck, Sparkles, Wind,
@@ -570,6 +570,20 @@ const TestimonialSection = () => {
     );
 };
 
+const InputField = React.memo(({ icon, ...props }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement>) => (
+  <div className="relative">
+    <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+      {icon}
+    </div>
+    <input
+      {...props}
+      className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+    />
+  </div>
+));
+
+InputField.displayName = 'InputField';
+
 const ContactSection = () => {
   const [form, setForm] = useState({
     name: '',
@@ -580,7 +594,9 @@ const ContactSection = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  }, []);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -606,18 +622,6 @@ const ContactSection = () => {
       setIsSubmitting(false);
     }
   };
-
-  const InputField = ({ icon, ...props }: { icon: React.ReactNode } & React.InputHTMLAttributes<HTMLInputElement>) => (
-    <div className="relative">
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        {icon}
-      </div>
-      <input
-        {...props}
-        className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
-      />
-    </div>
-  );
 
   return (
     <section id="contact" className="py-20 md:py-28 bg-white-canvas relative overflow-hidden">
