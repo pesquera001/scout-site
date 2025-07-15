@@ -41,28 +41,39 @@ export async function POST(request: NextRequest) {
       try {
         const notion = new NotionClient({ auth: process.env.NOTION_TOKEN });
         
-        // Create a simpler page with basic properties
+        // Create page with exact database properties
         const response = await notion.pages.create({
           parent: { database_id: process.env.NOTION_DATABASE_ID },
           properties: {
-            // Try common property names - adjust these based on your actual database
-            'Name': { 
+            'Customer Name': { 
               title: [{ text: { content: name } }] 
             },
-            'Email': { 
-              rich_text: [{ text: { content: email } }] 
-            },
-            'Phone': { 
+            'Phone Number': { 
               rich_text: [{ text: { content: phone } }] 
             },
-            'Message': { 
-              rich_text: [{ text: { content: message || 'No additional message' } }] 
+            'Email Address': { 
+              rich_text: [{ text: { content: email } }] 
             },
-            'Services': { 
+            'Service Type': { 
               rich_text: [{ text: { content: Array.isArray(services) ? services.join(', ') : services } }] 
             },
-            'When Needed': { 
-              rich_text: [{ text: { content: needBy } }] 
+            'Request Date': { 
+              date: { start: new Date().toISOString().split('T')[0] } 
+            },
+            'Lead Status': { 
+              select: { name: 'New' } 
+            },
+            'Follow Up Date': { 
+              date: { start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] } // 7 days from now
+            },
+            'Address/Location': { 
+              rich_text: [{ text: { content: 'From website form' } }] 
+            },
+            'Notes': { 
+              rich_text: [{ text: { content: `When needed: ${needBy}\n\nAdditional message: ${message || 'No additional message'}` } }] 
+            },
+            'Assigned To': { 
+              rich_text: [{ text: { content: 'Unassigned' } }] 
             }
           }
         });
