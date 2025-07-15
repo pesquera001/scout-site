@@ -38,19 +38,40 @@ export async function POST(request: NextRequest) {
 
     // --- NOTION INTEGRATION ---
     if (process.env.NOTION_TOKEN && process.env.NOTION_DATABASE_ID) {
-      const notion = new NotionClient({ auth: process.env.NOTION_TOKEN });
-      await notion.pages.create({
-        parent: { database_id: process.env.NOTION_DATABASE_ID },
-        properties: {
-          Name: { title: [{ text: { content: name } }] },
-          Email: { email },
-          Phone: { rich_text: [{ text: { content: phone } }] },
-          'When Needed': { rich_text: [{ text: { content: needBy } }] },
-          Services: { multi_select: (Array.isArray(services) ? services : [services]).map((s: string) => ({ name: s })) },
-          Message: { rich_text: [{ text: { content: message } }] },
-          Status: { select: { name: 'New' } }
-        }
-      });
+      try {
+        const notion = new NotionClient({ auth: process.env.NOTION_TOKEN });
+        
+        // Create a simpler page with basic properties
+        const response = await notion.pages.create({
+          parent: { database_id: process.env.NOTION_DATABASE_ID },
+          properties: {
+            // Try common property names - adjust these based on your actual database
+            'Name': { 
+              title: [{ text: { content: name } }] 
+            },
+            'Email': { 
+              rich_text: [{ text: { content: email } }] 
+            },
+            'Phone': { 
+              rich_text: [{ text: { content: phone } }] 
+            },
+            'Message': { 
+              rich_text: [{ text: { content: message || 'No additional message' } }] 
+            },
+            'Services': { 
+              rich_text: [{ text: { content: Array.isArray(services) ? services.join(', ') : services } }] 
+            },
+            'When Needed': { 
+              rich_text: [{ text: { content: needBy } }] 
+            }
+          }
+        });
+        
+        console.log('Notion page created successfully:', response.id);
+      } catch (notionError) {
+        console.error('Notion integration error:', notionError);
+        // Don't fail the entire request if Notion fails
+      }
     }
 
     // Check if Resend API key is configured
