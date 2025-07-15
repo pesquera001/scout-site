@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import { Client as NotionClient } from '@notionhq/client';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, message } = body;
+    const { name, email, phone, message, needBy, services } = body;
 
     // Validate required fields
-    if (!name || !email || !phone || !message) {
+    if (!name || !email || !phone || !message || !needBy || !services) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -21,6 +22,35 @@ export async function POST(request: NextRequest) {
         { error: 'Invalid email format' },
         { status: 400 }
       );
+    }
+
+    // --- SLACK INTEGRATION ---
+    if (process.env.SLACK_WEBHOOK_URL) {
+      const slackMessage = {
+        text: `*New Quote Request*\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Message:* ${message}`
+      };
+      await fetch(process.env.SLACK_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(slackMessage)
+      });
+    }
+
+    // --- NOTION INTEGRATION ---
+    if (process.env.NOTION_TOKEN && process.env.NOTION_DATABASE_ID) {
+      const notion = new NotionClient({ auth: process.env.NOTION_TOKEN });
+      await notion.pages.create({
+        parent: { database_id: process.env.NOTION_DATABASE_ID },
+        properties: {
+          Name: { title: [{ text: { content: name } }] },
+          Email: { email },
+          Phone: { rich_text: [{ text: { content: phone } }] },
+          'When Needed': { rich_text: [{ text: { content: needBy } }] },
+          Services: { multi_select: (Array.isArray(services) ? services : [services]).map((s: string) => ({ name: s })) },
+          Message: { rich_text: [{ text: { content: message } }] },
+          Status: { select: { name: 'New' } }
+        }
+      });
     }
 
     // Check if Resend API key is configured
@@ -37,8 +67,8 @@ export async function POST(request: NextRequest) {
     
     try {
       await resend.emails.send({
-        from: 'Friday\'s Window Cleaning <hello@friday.work>',
-        to: ['hello@friday.work'],
+        from: "Friday's Window Cleaning <info@fridayswindows.com>",
+        to: ["info@fridayswindows.com"],
         subject: 'New Quote Request from Friday\'s Website',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -51,6 +81,8 @@ export async function POST(request: NextRequest) {
               <div style="background: white; padding: 15px; border-radius: 4px; margin-top: 10px;">
                 ${message.replace(/\n/g, '<br>')}
               </div>
+              <p><strong>When do you need the work done by?:</strong> ${needBy}</p>
+              <p><strong>Requested Services:</strong> ${Array.isArray(services) ? services.join(', ') : services}</p>
             </div>
             <p style="color: #78736E; font-size: 12px; margin-top: 20px;">
               This request was submitted from the Friday's Window Cleaning website.

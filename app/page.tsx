@@ -185,8 +185,8 @@ const Nav = () => {
         
         <div className="hidden md:flex items-center gap-2">
           <Phone size={16} className="text-worn-denim" />
-          <a href="tel:(555)123-CLEAN" className="font-mono text-sm font-bold text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">
-            (555) 123-CLEAN
+          <a href="tel:(480) 701-4847" className="font-mono text-sm font-bold text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">
+            (480) 701-4847
           </a>
         </div>
       </div>
@@ -657,7 +657,9 @@ const ContactSection = () => {
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    needBy: '',
+    services: [] as string[],
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -681,7 +683,7 @@ const ContactSection = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setForm({ name: '', email: '', phone: '', message: '' });
+        setForm({ name: '', email: '', phone: '', message: '', needBy: '', services: [] });
       } else {
         setSubmitStatus('error');
       }
@@ -773,6 +775,42 @@ const ContactSection = () => {
             </div>
             
             <div className="relative">
+              <label className="block font-typewriter mb-2 text-smoke-tin/80">When do you need the work done by?</label>
+              <input
+                type="date"
+                name="needBy"
+                value={form.needBy}
+                onChange={handleChange}
+                className="w-full pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+              />
+            </div>
+
+            <div className="relative">
+              <label className="block font-typewriter mb-2 text-smoke-tin/80">What services do you need?</label>
+              <div className="flex flex-wrap gap-4">
+                {['Exterior Window Cleaning', 'Interior Window Cleaning', 'Screen Cleaning', 'Gutter Cleaning', 'Solar Panel Cleaning'].map(service => (
+                  <label key={service} className="flex items-center gap-2 font-typewriter text-smoke-tin/80">
+                    <input
+                      type="checkbox"
+                      name="services"
+                      value={service}
+                      checked={form.services.includes(service)}
+                      onChange={e => {
+                        setForm(prev => {
+                          const services = prev.services.includes(service)
+                            ? prev.services.filter(s => s !== service)
+                            : [...prev.services, service];
+                          return { ...prev, services };
+                        });
+                      }}
+                    />
+                    {service}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
                 <MessageSquare size={20} className="text-worn-denim/60" />
               </div>
@@ -834,7 +872,7 @@ const ContactSection = () => {
                   <Phone size={24} className="text-worn-denim" />
                 </div>
                 <h3 className="font-mono font-bold text-worn-denim mb-2">PHONE</h3>
-                <p className="font-typewriter text-smoke-tin/80">(555) 123-CLEAN</p>
+                <p className="font-typewriter text-smoke-tin/80">(480) 701-4847</p>
               </div>
               
               <div className="flex flex-col items-center">
@@ -842,7 +880,7 @@ const ContactSection = () => {
                   <Mail size={24} className="text-worn-denim" />
                 </div>
                 <h3 className="font-mono font-bold text-worn-denim mb-2">EMAIL</h3>
-                <p className="font-typewriter text-smoke-tin/80">hello@friday.work</p>
+                <p className="font-typewriter text-smoke-tin/80">info@fridayswindows.com</p>
               </div>
               
               <div className="flex flex-col items-center">
@@ -1116,8 +1154,8 @@ const Footer = () => (
         <div>
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">CONTACT</h4>
           <ul className="space-y-3 font-typewriter text-smoke-tin/80">
-            <li className="tracking-wide">(555) 123-CLEAN</li>
-            <li className="tracking-wide">hello@friday.work</li>
+            <li className="tracking-wide">(480) 701-4847</li>
+            <li className="tracking-wide">info@fridayswindows.com</li>
             <li className="tracking-wide">SUNDAY-SATURDAY</li>
             <li className="tracking-wide">7:30 AM - 7:30 PM</li>
           </ul>
