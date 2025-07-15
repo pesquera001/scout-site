@@ -37,10 +37,16 @@ export async function POST(request: NextRequest) {
     }
 
     // --- NOTION INTEGRATION ---
+    console.log('Starting Notion integration check...');
+    console.log('NOTION_TOKEN exists:', !!process.env.NOTION_TOKEN);
+    console.log('NOTION_DATABASE_ID exists:', !!process.env.NOTION_DATABASE_ID);
+
     if (process.env.NOTION_TOKEN && process.env.NOTION_DATABASE_ID) {
       try {
+        console.log('Creating Notion client...');
         const notion = new NotionClient({ auth: process.env.NOTION_TOKEN });
         
+        console.log('Attempting to create Notion page...');
         // Create page with exact database properties
         const response = await notion.pages.create({
           parent: { database_id: process.env.NOTION_DATABASE_ID },
@@ -79,10 +85,20 @@ export async function POST(request: NextRequest) {
         });
         
         console.log('Notion page created successfully:', response.id);
-      } catch (notionError) {
-        console.error('Notion integration error:', notionError);
+      } catch (notionError: any) {
+        console.error('Notion integration error details:', {
+          message: notionError.message,
+          code: notionError.code,
+          status: notionError.status,
+          body: notionError.body
+        });
         // Don't fail the entire request if Notion fails
       }
+    } else {
+      console.log('Notion environment variables missing:', {
+        hasToken: !!process.env.NOTION_TOKEN,
+        hasDatabaseId: !!process.env.NOTION_DATABASE_ID
+      });
     }
 
     // Check if Resend API key is configured
