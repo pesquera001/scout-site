@@ -718,7 +718,12 @@ const ContactSection = () => {
           </p>
         </motion.div>
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-saddle-dust/40">
+          <div className="flex flex-col items-center mb-8">
+            <Mail size={40} className="text-worn-denim mb-2" />
+            <h2 className="font-display text-3xl md:text-4xl text-worn-denim mb-2">Request a Quote</h2>
+            <p className="font-typewriter text-base text-smoke-tin/80">Fill out the form and we’ll get back to you with a same-day quote!</p>
+          </div>
           <motion.form
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -739,7 +744,7 @@ const ContactSection = () => {
                   value={form.name}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                  className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
                 />
               </div>
               
@@ -754,7 +759,7 @@ const ContactSection = () => {
                   value={form.email}
                   onChange={handleChange}
                   required
-                  className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                  className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
                 />
               </div>
             </div>
@@ -770,18 +775,19 @@ const ContactSection = () => {
                 value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
               />
             </div>
             
             <div className="relative">
               <label className="block font-typewriter mb-2 text-smoke-tin/80">When do you need the work done by?</label>
               <input
-                type="date"
+                type="text"
                 name="needBy"
+                placeholder="e.g. ASAP, Next week, Specific date, etc."
                 value={form.needBy}
                 onChange={handleChange}
-                className="w-full pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
               />
             </div>
 
@@ -816,12 +822,11 @@ const ContactSection = () => {
               </div>
               <textarea
                 name="message"
-                placeholder="TELL_US_ABOUT_YOUR_PROJECT"
+                placeholder="Anything else?"
                 value={form.message}
                 onChange={handleChange}
-                required
                 rows={6}
-                className="w-full pl-10 pr-4 py-3 border-2 border-worn-denim/30 rounded-lg bg-white-canvas/50 backdrop-blur-sm focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter resize-none"
+                className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter resize-none"
               />
             </div>
 
