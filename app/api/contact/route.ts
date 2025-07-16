@@ -5,7 +5,7 @@ import { Client as NotionClient } from '@notionhq/client';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, needBy, services } = body;
+    const { name, email, phone, message, needBy, services, streetAddress, zipCode } = body;
 
     // Validate required fields
     if (!name || !email || !phone || !needBy || !services) {
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     // --- SLACK INTEGRATION ---
     if (process.env.SLACK_WEBHOOK_URL) {
       const slackMessage = {
-        text: `*New Quote Request*\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Message:* ${message}`
+        text: `*New Quote Request*\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Street Address:* ${streetAddress || ''}\n*Zip Code:* ${zipCode || ''}\n*Message:* ${message}`
       };
       await fetch(process.env.SLACK_WEBHOOK_URL, {
         method: 'POST',
@@ -55,31 +55,34 @@ export async function POST(request: NextRequest) {
               title: [{ text: { content: name } }] 
             },
             'Phone Number': { 
-              rich_text: [{ text: { content: phone } }] 
+              phone_number: phone
             },
             'Email Address': { 
-              rich_text: [{ text: { content: email } }] 
+              email: email
             },
             'Service Type': { 
-              rich_text: [{ text: { content: Array.isArray(services) ? services.join(', ') : services } }] 
+              multi_select: Array.isArray(services) ? services.map((s: string) => ({ name: s })) : [{ name: services }]
             },
             'Request Date': { 
               date: { start: new Date().toISOString().split('T')[0] } 
             },
-            'Lead Status': { 
-              select: { name: 'New' } 
-            },
-            'Follow Up Date': { 
+            'Follow-Up Date': { 
               date: { start: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0] } // 7 days from now
             },
             'Address/Location': { 
               rich_text: [{ text: { content: 'From website form' } }] 
             },
+            'Client Address': { 
+              rich_text: [{ text: { content: streetAddress || '' } }] 
+            },
+            'Zip Code': { 
+              rich_text: [{ text: { content: zipCode || '' } }] 
+            },
             'Notes': { 
               rich_text: [{ text: { content: `When needed: ${needBy}\n\nAdditional message: ${message || 'No additional message'}` } }] 
             },
-            'Assigned To': { 
-              rich_text: [{ text: { content: 'Unassigned' } }] 
+            'Lead Status': {
+              select: { name: 'New' }
             }
           }
         });

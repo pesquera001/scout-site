@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import Nav from "@/components/Nav";
+import Footer from "../components/Footer";
 
 const FridayHead = () => (
   <>
@@ -88,123 +90,6 @@ const FridayHead = () => (
     `}</style>
   </>
 );
-
-const Nav = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [buttonText, setButtonText] = useState("GET_QUOTE");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [hasScrolledPastMarquee, setHasScrolledPastMarquee] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const marqueeElement = document.querySelector('.marquee-content');
-      if (marqueeElement) {
-        const marqueeBottom = marqueeElement.getBoundingClientRect().bottom;
-        const hasPassed = marqueeBottom < 0;
-        
-        if (hasPassed && !hasScrolledPastMarquee) {
-          setHasScrolledPastMarquee(true);
-          animateButtonText();
-        } else if (!hasPassed && hasScrolledPastMarquee) {
-          setHasScrolledPastMarquee(false);
-          setButtonText("GET_QUOTE");
-        }
-      }
-    };
-
-    const animateButtonText = () => {
-      if (isAnimating) return;
-      setIsAnimating(true);
-      
-      const originalText = "GET_QUOTE";
-      const targetText = "SAME_DAY_QUOTE";
-      
-      // First, delete the original text character by character
-      let currentText = originalText;
-      const deleteInterval = setInterval(() => {
-        if (currentText.length > 0) {
-          currentText = currentText.slice(0, -1);
-          setButtonText(currentText);
-        } else {
-          clearInterval(deleteInterval);
-          
-          // Then type the new text character by character
-          let newText = "";
-          const typeInterval = setInterval(() => {
-            if (newText.length < targetText.length) {
-              newText += targetText[newText.length];
-              setButtonText(newText);
-            } else {
-              clearInterval(typeInterval);
-              setIsAnimating(false);
-            }
-          }, 100); // Type speed
-        }
-      }, 50); // Delete speed
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasScrolledPastMarquee, isAnimating]);
-
-  return (
-    <header className="bg-white-canvas/80 backdrop-blur-md z-50">
-      <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
-        <div className="text-3xl md:text-4xl font-display font-bold tracking-[0.3em] text-worn-denim">
-          <a href="/">FRIDAY'S</a>
-        </div>
-        
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
-          <a href="/" className="font-mono text-sm font-bold text-worn-denim tracking-wide">HOME</a>
-          <a href="#about" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">ABOUT</a>
-          <a href="#services" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">SERVICES</a>
-          <a href="#process" className="font-mono text-sm font-bold hover:text-worn-denim transition-colors tracking-wide">PROCESS</a>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden p-2 text-worn-denim"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {isMobileMenuOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-
-        <Button 
-          onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-          className="bg-worn-denim text-white hover:bg-smoke-tin font-typewriter text-sm font-bold tracking-wide px-6 py-2 transition-all duration-300"
-        >
-          {buttonText}
-        </Button>
-        
-        <div className="hidden md:flex items-center gap-2">
-          <Phone size={16} className="text-worn-denim" />
-          <a href="tel:(480) 701-4847" className="font-mono text-sm font-bold text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">
-            (480) 701-4847
-          </a>
-        </div>
-      </div>
-
-      {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-white-canvas border-b border-saddle-dust/50">
-          <nav className="container mx-auto px-6 py-4 space-y-4">
-            <a href="/" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">HOME</a>
-            <a href="#about" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">ABOUT</a>
-            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">SERVICES</a>
-            <a href="#process" onClick={() => setIsMobileMenuOpen(false)} className="block font-mono text-sm font-light text-worn-denim tracking-wide hover:text-smoke-tin transition-colors">PROCESS</a>
-          </nav>
-        </div>
-      )}
-    </header>
-  );
-};
 
 const HERO_IMAGE_URL = "/hero/hero-house.webp";
 
@@ -568,7 +453,7 @@ const TestimonialSection = () => {
     const [current, setCurrent] = useState(0);
     const testimonials = [
         { quote: "Quiet, clean, and gets it done. The kind of company you want on your street.", author: "S. ASHFORD" },
-        { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "GENERAL CONTRACTOR" },
+        { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "S. CHEN" },
         { quote: "They just show up and do the job right. No fuss. It's refreshing.", author: "T. DAMONS" }
     ];
 
@@ -622,11 +507,6 @@ const TestimonialSection = () => {
                             </p>
                             
                             <div className="flex items-center justify-center gap-4">
-                                <div className="w-12 h-12 bg-white-canvas/20 rounded-full flex items-center justify-center">
-                                    <svg className="w-6 h-6 text-white-canvas" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.31 7.526c-.099-.807.528-1.526 1.348-1.526.771 0 1.377.676 1.28 1.451l-.757 6.053c-.035.283-.276.496-.561.496s-.526-.213-.562-.496l-.748-5.978zm1.31 10.724c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
-                                    </svg>
-                                </div>
                                 <p className="font-mono font-bold tracking-[0.2em] text-white-canvas/90 uppercase text-sm">
                                     — {testimonials[current].author}
                                 </p>
@@ -660,6 +540,8 @@ const ContactSection = () => {
     message: '',
     needBy: '',
     services: [] as string[],
+    streetAddress: '',
+    zipCode: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -683,7 +565,7 @@ const ContactSection = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setForm({ name: '', email: '', phone: '', message: '', needBy: '', services: [] });
+        setForm({ name: '', email: '', phone: '', message: '', needBy: '', services: [], streetAddress: '', zipCode: '' });
       } else {
         setSubmitStatus('error');
       }
@@ -709,13 +591,17 @@ const ContactSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row items-center justify-center mb-16 gap-6 md:gap-10"
         >
-          <h2 className="font-display text-5xl md:text-6xl text-worn-denim mb-6">SAME_DAY_QUOTE</h2>
-          <div className="w-32 h-1 bg-worn-denim/30 mx-auto mb-8"></div>
-          <p className="max-w-2xl mx-auto text-lg font-typewriter text-smoke-tin/80 tracking-wide">
-            Tell us about your project. We'll provide a clear, honest price. No fluff, just straight talk.
-          </p>
+          <div className="flex flex-row w-full md:w-auto items-center justify-center">
+            <a href="tel:(480) 701-4847" className="font-typewriter text-worn-denim text-lg font-bold hover:underline mb-2 md:mb-0 md:mr-6 whitespace-nowrap">(480) 701-4847</a>
+            <div className="hidden md:block h-10 border-l border-saddle-dust mx-6"></div>
+            <div className="flex flex-col items-start text-left">
+              <h2 className="font-display text-2xl md:text-3xl text-worn-denim mb-2 leading-tight">Tell us about your project.</h2>
+              <div className="font-typewriter text-base text-smoke-tin/90 mb-1">We'll provide a clear, honest price.</div>
+              <div className="font-typewriter text-base text-smoke-tin/90">No fluff, just straight talk.</div>
+            </div>
+          </div>
         </motion.div>
 
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-saddle-dust/40">
@@ -787,6 +673,31 @@ const ContactSection = () => {
                 placeholder="e.g. ASAP, Next week, Specific date, etc."
                 value={form.needBy}
                 onChange={handleChange}
+                className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+              />
+            </div>
+
+            <div className="relative">
+              <label className="block font-typewriter mb-2 text-smoke-tin/80">Street Address</label>
+              <input
+                type="text"
+                name="streetAddress"
+                placeholder="Street Address"
+                value={form.streetAddress}
+                onChange={handleChange}
+                required
+                className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+              />
+            </div>
+            <div className="relative">
+              <label className="block font-typewriter mb-2 text-smoke-tin/80">Zip Code</label>
+              <input
+                type="text"
+                name="zipCode"
+                placeholder="Zip Code"
+                value={form.zipCode}
+                onChange={handleChange}
+                required
                 className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
               />
             </div>
@@ -893,7 +804,7 @@ const ContactSection = () => {
                   <Calendar size={24} className="text-worn-denim" />
                 </div>
                 <h3 className="font-mono font-bold text-worn-denim mb-2">HOURS</h3>
-                <p className="font-typewriter text-smoke-tin/80">MON-FRI 8AM-6PM</p>
+                <p className="font-typewriter text-smoke-tin/80">SUN-SAT 7:30AM-7:30PM</p>
               </div>
             </div>
           </motion.div>
@@ -1139,46 +1050,6 @@ const ShopPage = () => {
     </div>
   );
 };
-
-const Footer = () => (
-  <footer className="bg-white-canvas pt-16 pb-8">
-    <div className="container mx-auto px-6">
-      <div className="grid md:grid-cols-4 gap-8 text-center md:text-left">
-        <div className="md:col-span-1">
-          <h3 className="text-2xl font-display font-bold tracking-[0.3em] text-worn-denim">FRIDAY'S</h3>
-        </div>
-        <div>
-          <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">NAVIGATE</h4>
-          <ul className="space-y-3 font-typewriter text-smoke-tin/80">
-            <li><a href="/" className="hover:text-worn-denim tracking-wide">HOME</a></li>
-            <li><a href="#services" className="hover:text-worn-denim tracking-wide">SERVICES</a></li>
-            <li><a href="#process" className="hover:text-worn-denim tracking-wide">PROCESS</a></li>
-            <li><a href="#about" className="hover:text-worn-denim tracking-wide">ABOUT</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">CONTACT</h4>
-          <ul className="space-y-3 font-typewriter text-smoke-tin/80">
-            <li className="tracking-wide">(480) 701-4847</li>
-            <li className="tracking-wide">info@fridayswindows.com</li>
-            <li className="tracking-wide">SUNDAY-SATURDAY</li>
-            <li className="tracking-wide">7:30 AM - 7:30 PM</li>
-          </ul>
-        </div>
-        <div>
-          <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">LEGAL</h4>
-          <ul className="space-y-3 font-typewriter text-smoke-tin/80">
-            <li className="tracking-wide">PRIVACY_POLICY</li>
-            <li className="tracking-wide">TERMS_OF_SERVICE</li>
-          </ul>
-        </div>
-      </div>
-      <div className="mt-16 pt-8 border-t-2 border-saddle-dust/30 text-center">
-        <p className="font-typewriter text-sm text-smoke-tin/60 tracking-wide">© 2025 FRIDAY'S_WINDOW_CLEANING. SHOW_UP_CLEAN. LEAVE_CLEANER.</p>
-      </div>
-    </div>
-  </footer>
-);
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState('/');
