@@ -67,7 +67,7 @@ const Nav = () => {
   }, [hasScrolledPastMarquee, isAnimating]);
 
   return (
-    <header className="bg-white-canvas/80 backdrop-blur-md z-50">
+    <header className="sticky top-0 bg-white-canvas/80 backdrop-blur-md z-50">
       <div className="container mx-auto px-6 h-20 flex justify-between items-center border-b border-saddle-dust/50">
         <div className="text-3xl md:text-4xl font-display font-bold tracking-[0.3em] text-worn-denim">
           <a href="/">FRIDAY'S</a>
