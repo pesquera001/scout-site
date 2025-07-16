@@ -117,7 +117,7 @@ export default function ScottsdaleWindowCleaning() {
           />
           <div className="absolute inset-0 bg-black/30 z-10" />
           <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-4 text-center">
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4 retro-shadow">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4">
               The Valley’s Favorite Window Cleaning Service
             </h1>
             <div className="font-typewriter text-lg md:text-2xl text-white-canvas/90 max-w-xl drop-shadow-lg mb-2">
