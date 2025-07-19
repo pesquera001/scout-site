@@ -5,10 +5,10 @@ import { Client as NotionClient } from '@notionhq/client';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, message, needBy, services, streetAddress, zipCode } = body;
+    const { firstName, lastName, email, phone, message, needBy, services, streetAddress, zipCode } = body;
 
     // Validate required fields
-    if (!name || !email || !phone || !needBy || !services) {
+    if (!firstName || !lastName || !email || !phone || !needBy || !services) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -27,7 +27,7 @@ export async function POST(request: NextRequest) {
     // --- SLACK INTEGRATION ---
     if (process.env.SLACK_WEBHOOK_URL) {
       const slackMessage = {
-        text: `*New Quote Request*\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Street Address:* ${streetAddress || ''}\n*Zip Code:* ${zipCode || ''}\n*Message:* ${message}`
+        text: `*New Quote Request*\n*Name:* ${firstName} ${lastName}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Street Address:* ${streetAddress || ''}\n*Zip Code:* ${zipCode || ''}\n*Message:* ${message}`
       };
       await fetch(process.env.SLACK_WEBHOOK_URL, {
         method: 'POST',
@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
           parent: { database_id: process.env.NOTION_DATABASE_ID },
           properties: {
             'Customer Name': { 
-              title: [{ text: { content: name } }] 
+              title: [{ text: { content: `${firstName} ${lastName}` } }] 
             },
             'Phone Number': { 
               phone_number: phone
@@ -125,7 +125,7 @@ export async function POST(request: NextRequest) {
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #708B91;">New Quote Request</h2>
             <div style="background: #f9f8f5; padding: 20px; border-radius: 8px;">
-              <p><strong>Name:</strong> ${name}</p>
+              <p><strong>Name:</strong> ${firstName} ${lastName}</p>
               <p><strong>Email:</strong> ${email}</p>
               <p><strong>Phone:</strong> ${phone}</p>
               <p><strong>Message:</strong></p>
@@ -149,6 +149,48 @@ export async function POST(request: NextRequest) {
         { error: 'Failed to send email. Please try again later.' },
         { status: 500 }
       );
+    }
+
+    // Send confirmation email to customer
+    try {
+      await resend.emails.send({
+        from: "Friday's Window Cleaning <info@fridayswindows.com>",
+        to: [email],
+        subject: "Received. Friday's Windows reporting for duty.",
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+            <h2 style="color: #708B91; margin-bottom: 20px;">Hi ${firstName},</h2>
+            
+            <p style="color: #333; line-height: 1.6; margin-bottom: 20px;">
+              Thanks for reaching out for a window cleaning quote! We've received your request and will get back to you within the day with your custom estimate.
+            </p>
+            
+            <p style="color: #333; line-height: 1.6; margin-bottom: 20px;">
+              In the meantime, feel free to check out our recent work:
+            </p>
+            
+            <p style="margin-bottom: 20px;">
+              <a href="https://www.instagram.com/fridayswindows/" style="color: #708B91; text-decoration: underline;">@https://www.instagram.com/fridayswindows/</a>
+            </p>
+            
+            <p style="color: #333; line-height: 1.6; margin-bottom: 20px;">
+              If you need to reach us directly, reply here or call/text us at <a href="tel:(480) 701-4847" style="color: #708B91; text-decoration: none;">(480) 701-4847</a>
+            </p>
+            
+            <div style="border-top: 1px solid #e0e0e0; padding-top: 20px; margin-top: 30px;">
+              <p style="color: #333; margin-bottom: 5px;">Talk soon,</p>
+              <p style="color: #708B91; font-weight: bold; margin-bottom: 5px;">Aidan from Friday's Windows</p>
+              <p style="color: #708B91; margin-bottom: 5px;">(480) 701-4847</p>
+              <p style="color: #708B91; margin-bottom: 0;">fridayswindows.com</p>
+            </div>
+          </div>
+        `
+      });
+
+      console.log('Confirmation email sent successfully to customer');
+    } catch (confirmationEmailError) {
+      console.error('Confirmation email sending failed:', confirmationEmailError);
+      // Don't fail the entire request if confirmation email fails
     }
 
     // Return success response

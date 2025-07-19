@@ -534,7 +534,8 @@ const TestimonialSection = () => {
 
 const ContactSection = () => {
   const [form, setForm] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     phone: '',
     message: '',
@@ -565,7 +566,7 @@ const ContactSection = () => {
 
       if (response.ok) {
         setSubmitStatus('success');
-        setForm({ name: '', email: '', phone: '', message: '', needBy: '', services: [], streetAddress: '', zipCode: '' });
+        setForm({ firstName: '', lastName: '', email: '', phone: '', message: '', needBy: '', services: [], streetAddress: '', zipCode: '' });
       } else {
         setSubmitStatus('error');
       }
@@ -625,9 +626,23 @@ const ContactSection = () => {
                 </div>
                 <input
                   type="text"
-                  name="name"
-                  placeholder="YOUR_NAME"
-                  value={form.name}
+                  name="firstName"
+                  placeholder="FIRST_NAME"
+                  value={form.firstName}
+                  onChange={handleChange}
+                  required
+                  className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                />
+              </div>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <User size={20} className="text-worn-denim/60" />
+                </div>
+                <input
+                  type="text"
+                  name="lastName"
+                  placeholder="LAST_NAME"
+                  value={form.lastName}
                   onChange={handleChange}
                   required
                   className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
