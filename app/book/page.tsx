@@ -192,7 +192,7 @@ export default function ScottsdaleWindowCleaning() {
                       value={form.lastName}
                       onChange={handleChange}
                       required
-                      className="w-full pl-4 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                      className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
                     />
                   </div>
                   <div className="relative">
