@@ -79,7 +79,8 @@ export async function POST(request: NextRequest) {
       const props = page.properties;
       const customerName = getText(props['Customer Name']);
       const serviceType = getText(props['Service Type']);
-      const jobDate = getText(props['Job Date']);
+      // Use ISO string directly from Notion API for Job Date
+      const jobDate = props['Job Date']?.date?.start || '';
       const clientAddress = getText(props['Client Address']);
       const zipCode = getText(props['Zip Code']);
       const notes = getText(props['Notes']);
