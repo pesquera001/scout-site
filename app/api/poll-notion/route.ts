@@ -108,6 +108,13 @@ export async function POST(request: NextRequest) {
       if (assignedTo && jobDate) {
         const eventTitle = `Job - ${customerName}`;
         const eventDescription = slackMessage.text;
+        // Add debug logging
+        console.log('--- Google Calendar Debug ---');
+        console.log('assignedTo:', assignedTo);
+        console.log('jobDate:', jobDate);
+        console.log('eventTitle:', eventTitle);
+        console.log('eventDescription:', eventDescription);
+        console.log('-----------------------------');
         const calRes = await createCalendarEvent(assignedTo, jobDate, eventTitle, eventDescription);
         if (!calRes.success) {
           errors.push({ page: page.id, error: 'Calendar', details: calRes.error });
