@@ -37,13 +37,12 @@ async function createCalendarEvent(assignedTo: string, jobDate: string, title: s
   try {
     const credentials = JSON.parse(GOOGLE_SERVICE_ACCOUNT_JSON);
     const scopes = ['https://www.googleapis.com/auth/calendar'];
-    const auth = new google.auth.JWT(
-      credentials.client_email,
-      undefined,
-      credentials.private_key,
+    const auth = new google.auth.JWT({
+      email: credentials.client_email,
+      key: credentials.private_key,
       scopes,
-      assignedTo // impersonate the cleaner
-    );
+      subject: assignedTo // impersonate the cleaner
+    });
     const calendar = google.calendar({ version: 'v3', auth });
     const event = {
       summary: title,
@@ -53,7 +52,7 @@ async function createCalendarEvent(assignedTo: string, jobDate: string, title: s
     };
     await calendar.events.insert({
       calendarId: 'primary',
-      resource: event,
+      requestBody: event,
       sendUpdates: 'all',
     });
     return { success: true };
