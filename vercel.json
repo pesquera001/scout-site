@@ -10,6 +10,12 @@
       "maxDuration": 10
     }
   },
+  "cron": [
+    {
+      "path": "/api/poll-notion",
+      "schedule": "*/1 * * * *"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
