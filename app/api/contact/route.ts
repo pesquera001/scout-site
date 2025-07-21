@@ -25,11 +25,12 @@ export async function POST(request: NextRequest) {
     }
 
     // --- SLACK INTEGRATION ---
-    if (process.env.SLACK_WEBHOOK_URL) {
+    const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || "https://hooks.slack.com/services/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";
+    if (SLACK_WEBHOOK_URL) {
       const slackMessage = {
         text: `*New Quote Request*\n*Name:* ${firstName} ${lastName}\n*Email:* ${email}\n*Phone:* ${phone}\n*When Needed:* ${needBy}\n*Services:* ${(Array.isArray(services) ? services.join(', ') : services)}\n*Street Address:* ${streetAddress || ''}\n*Zip Code:* ${zipCode || ''}\n*Message:* ${message}`
       };
-      await fetch(process.env.SLACK_WEBHOOK_URL, {
+      await fetch(SLACK_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(slackMessage)
