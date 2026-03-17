@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { 
   ArrowRight, Check, Phone, Mail, ShieldCheck, Sparkles, Wind,
@@ -13,10 +13,6 @@ import Footer from "../components/Footer";
 
 const FridayHead = () => (
   <>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;700&display=swap" as="style" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@300;400;500;700&display=swap" />
     <style>{`
       :root {
         --white-canvas: #F9F8F5;
@@ -130,7 +126,7 @@ const CinematicHeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-[80vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pb-0 mb-0">
+    <section id="home" className="relative min-h-[80vh] md:min-h-[95vh] flex items-center justify-center overflow-hidden pb-0 mb-0 w-screen max-w-none p-0 m-0">
       {/* Cinematic Background Overlay */}
       <motion.div
         initial={{ opacity: 0 }}
@@ -153,11 +149,12 @@ const CinematicHeroSection = () => {
         className="absolute inset-0 w-full h-full z-0"
       >
         <Image
-          src="/hero/20250712_1704_90s Film Window Cleaning_remix_01k00hg7b8ffmv0fvvs3q8cbq3(1).png"
+          src="/hero/heropic.jpeg"
           alt="Friday's cleaning a window with a dog nearby"
           fill
           priority
-          className="object-cover object-top w-full h-full"
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
+          className="w-full h-full"
         />
       </motion.div>
       
@@ -172,13 +169,15 @@ const CinematicHeroSection = () => {
           }}
           className="w-full absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 px-4 md:px-8 z-20"
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl text-saddle-dust leading-tight mb-4" style={{
-            textShadow: '3px 3px 0px var(--saddle-dust), 6px 6px 0px var(--prairie-clay)'
+          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl" style={{
+            textShadow: '3px 3px 0px #E5D3BD',
+            color: '#6B3F23'
           }}>
             FRIDAY'S
           </h1>
-          <h2 className="font-mono text-xl md:text-2xl lg:text-3xl text-saddle-dust/90 leading-tight" style={{
-            textShadow: '2px 2px 0px var(--saddle-dust), 4px 4px 0px var(--prairie-clay)'
+          <h2 className="font-mono text-xl md:text-2xl lg:text-3xl" style={{
+            textShadow: '2px 2px 0px #E5D3BD',
+            color: '#6B3F23'
           }}>
             WINDOW SERVICES
           </h2>
@@ -246,7 +245,7 @@ const CinematicHeroSection = () => {
           transition={{ duration: 1, delay: 2 }}
           className="font-mono text-base md:text-lg text-saddle-dust/90 mt-1 md:mt-2"
         >
-          Old-school reliability meets a stylist's eye for detail.<br/>Friday's Window Cleaning delivers spotless results and subtle charm — every time.
+          Old-school reliability meets a stylist's eye for detail.<br/>Friday's Window Services delivers spotless results and subtle charm — every time.
         </motion.p>
       </motion.div>
       
@@ -300,7 +299,7 @@ const ServicesSection = () => {
   const [activeTab, setActiveTab] = React.useState(0);
 
   return (
-    <section id="services" className="py-20 md:py-28 bg-white-canvas">
+    <section id="services" className="pt-20 md:pt-28 pb-10 md:pb-14 bg-white-canvas">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-display text-5xl md:text-6xl text-worn-denim retro-shadow">CLEANING SERVICES</h2>
@@ -356,10 +355,11 @@ const ProcessSection = () => {
   ];
 
   return (
-    <section id="process" className="py-20 md:py-28 bg-prairie-clay text-white-canvas relative overflow-hidden">
+    <section id="process" className="py-20 md:py-28 text-white-canvas relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-10 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'40\' height=\'40\' fill=\'%23E5D3BD\' fill-opacity=\'0.2\'/%3E%3C/svg%3E") repeat' }} />
       <div className="container mx-auto px-6 relative z-10">
+        <div className="bg-prairie-clay rounded-2xl shadow-soft p-8 md:p-12">
         <div className="text-center mb-16">
           <h2 className="font-display text-5xl md:text-6xl text-white-canvas retro-shadow-denim">THE PROCESS.</h2>
           <p className="mt-6 max-w-xl mx-auto text-lg font-typewriter text-white-canvas/80 tracking-wide">
@@ -388,13 +388,14 @@ const ProcessSection = () => {
             </React.Fragment>
           ))}
         </div>
+        </div>
       </div>
     </section>
   );
 };
 
 const AboutSection = () => (
-  <section id="about" className="py-20 md:py-28 bg-white-canvas">
+  <section id="about" className="pt-20 md:pt-28 pb-10 md:pb-14 bg-white-canvas">
     <div className="container mx-auto px-6">
       <div className="grid lg:grid-cols-2 gap-16 items-center">
         <motion.div
@@ -406,7 +407,7 @@ const AboutSection = () => (
         >
           <Image
             src="/hero/IMG_5617.jpg"
-            alt="Friday's Window Cleaning - Professional service"
+            alt="Friday's Window Services - Professional service"
             fill
             className="object-cover"
             priority
@@ -449,89 +450,6 @@ const AboutSection = () => (
   </section>
 );
 
-const TestimonialSection = () => {
-    const [current, setCurrent] = useState(0);
-    const testimonials = [
-        { quote: "Quiet, clean, and gets it done. The kind of company you want on your street.", author: "S. ASHFORD" },
-        { quote: "The most beautiful clean you'll never notice. That's the highest compliment I can give.", author: "S. CHEN" },
-        { quote: "They just show up and do the job right. No fuss. It's refreshing.", author: "T. DAMONS" }
-    ];
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setCurrent((current + 1) % testimonials.length);
-        }, 5000);
-        return () => clearTimeout(timer);
-    }, [current, testimonials.length]);
-
-    return (
-        <section className="py-20 md:py-28 bg-saddle-dust relative overflow-hidden">
-            {/* Subtle background pattern */}
-            <div className="absolute inset-0 opacity-5 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'60\' height=\'60\' fill=\'%23F9F8F5\' fill-opacity=\'0.3\'/%3E%3C/svg%3E") repeat' }} />
-            
-            {/* Decorative elements */}
-            <div className="absolute top-10 left-10 w-20 h-20 border-2 border-white-canvas/20 rounded-full"></div>
-            <div className="absolute bottom-10 right-10 w-16 h-16 border-2 border-white-canvas/20 rounded-full"></div>
-            <div className="absolute top-1/2 left-1/4 w-12 h-12 border border-white-canvas/10 rounded-full"></div>
-            
-            <div className="container mx-auto px-6 text-center relative z-10">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-12"
-                >
-                    <h2 className="font-display text-4xl md:text-5xl text-white-canvas mb-4">WHAT_CLIENTS_SAY</h2>
-                    <div className="w-24 h-1 bg-white-canvas/30 mx-auto mb-8"></div>
-                </motion.div>
-                
-                <div className="max-w-4xl mx-auto relative">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={current}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -20 }}
-                            transition={{ duration: 0.5 }}
-                            className="bg-white-canvas/10 backdrop-blur-sm border border-white-canvas/20 rounded-2xl p-8 md:p-12 shadow-xl"
-                        >
-                            <div className="mb-6">
-                                <svg className="w-12 h-12 mx-auto text-white-canvas/60" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
-                                </svg>
-                            </div>
-                            
-                            <p className="font-typewriter text-xl md:text-2xl text-white-canvas leading-relaxed tracking-wide mb-8">
-                                "{testimonials[current].quote}"
-                            </p>
-                            
-                            <div className="flex items-center justify-center gap-4">
-                                <p className="font-mono font-bold tracking-[0.2em] text-white-canvas/90 uppercase text-sm">
-                                    — {testimonials[current].author}
-                                </p>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
-                    
-                    {/* Testimonial indicators */}
-                    <div className="flex justify-center gap-2 mt-8">
-                        {testimonials.map((_, index) => (
-                            <button
-                                key={index}
-                                onClick={() => setCurrent(index)}
-                                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                                    current === index ? 'bg-white-canvas' : 'bg-white-canvas/30'
-                                }`}
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </section>
-    );
-};
-
 const ContactSection = () => {
   const [form, setForm] = useState({
     firstName: '',
@@ -546,16 +464,48 @@ const ContactSection = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [formError, setFormError] = useState<string | null>(null);
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+    if (name === 'phone') {
+      // Remove all non-digit characters
+      let digits = value.replace(/\D/g, '').slice(0, 10);
+      // Format as (xxx) xxx-xxxx
+      let formatted = digits;
+      if (digits.length > 3 && digits.length <= 6) {
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      } else if (digits.length > 6) {
+        formatted = `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+      }
+      setForm(prev => ({ ...prev, [name]: formatted }));
+      setFormError(null);
+      return;
+    }
     setForm(prev => ({ ...prev, [name]: value }));
+    setFormError(null);
   }, []);
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setFormError(null);
+    // Validate required fields
+    const requiredFields = [
+      { name: "First Name", value: form.firstName },
+      { name: "Last Name", value: form.lastName },
+      { name: "Email", value: form.email },
+      { name: "Phone", value: form.phone },
+      { name: "Street Address", value: form.streetAddress },
+      { name: "Zip Code", value: form.zipCode },
+    ];
+    const missing = requiredFields.filter(f => !f.value.trim());
+    if (missing.length > 0) {
+      setFormError(`Please fill out the required field${missing.length > 1 ? 's' : ''}: ${missing.map(f => f.name).join(', ')}`);
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
       const response = await fetch('/api/contact', {
@@ -581,35 +531,15 @@ const ContactSection = () => {
     <section id="contact" className="py-20 md:py-28 bg-white-canvas relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5 pointer-events-none select-none" style={{ background: 'url("data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Crect x=\'0\' y=\'0\' width=\'40\' height=\'40\' fill=\'%23708B91\' fill-opacity=\'0.1\'/%3E%3C/svg%3E") repeat' }} />
-      
       {/* Decorative elements */}
       <div className="absolute top-20 right-20 w-32 h-32 border-2 border-worn-denim/10 rounded-full"></div>
       <div className="absolute bottom-20 left-20 w-24 h-24 border border-worn-denim/10 rounded-full"></div>
-      
       <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex flex-col md:flex-row items-center justify-center mb-16 gap-6 md:gap-10"
-        >
-          <div className="flex flex-row w-full md:w-auto items-center justify-center">
-            <a href="tel:(480) 701-4847" className="font-typewriter text-worn-denim text-lg font-bold hover:underline mb-2 md:mb-0 md:mr-6 whitespace-nowrap">(480) 701-4847</a>
-            <div className="hidden md:block h-10 border-l border-saddle-dust mx-6"></div>
-            <div className="flex flex-col items-start text-left">
-              <h2 className="font-display text-2xl md:text-3xl text-worn-denim mb-2 leading-tight">Tell us about your project.</h2>
-              <div className="font-typewriter text-base text-smoke-tin/90 mb-1">We'll provide a clear, honest price.</div>
-              <div className="font-typewriter text-base text-smoke-tin/90">No fluff, just straight talk.</div>
-            </div>
-          </div>
-        </motion.div>
-
-        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-saddle-dust/40">
+        <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl p-2 md:p-3 border border-saddle-dust/40">
           <div className="flex flex-col items-center mb-8">
-            <Mail size={40} className="text-worn-denim mb-2" />
             <h2 className="font-display text-3xl md:text-4xl text-worn-denim mb-2">Request a Quote</h2>
-            <p className="font-typewriter text-base text-smoke-tin/80">Fill out the form and we’ll get back to you with a same-day quote!</p>
+            <p className="font-typewriter text-base text-smoke-tin/80 mb-2">Fill out the form and we’ll get back to you with a same-day quote!</p>
+            <a href="tel:(480) 701-4847" className="font-typewriter text-worn-denim text-lg font-bold hover:underline mb-2">(480) 701-4847</a>
           </div>
           <motion.form
             initial={{ opacity: 0, y: 20 }}
@@ -619,6 +549,11 @@ const ContactSection = () => {
             onSubmit={handleSubmit}
             className="space-y-6"
           >
+            {formError && (
+              <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
+                {formError}
+              </div>
+            )}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -648,7 +583,6 @@ const ContactSection = () => {
                   className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
                 />
               </div>
-              
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Mail size={20} className="text-worn-denim/60" />
@@ -664,7 +598,6 @@ const ContactSection = () => {
                 />
               </div>
             </div>
-            
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <Phone size={20} className="text-worn-denim/60" />
@@ -677,9 +610,9 @@ const ContactSection = () => {
                 onChange={handleChange}
                 required
                 className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                maxLength={14}
               />
             </div>
-            
             <div className="relative">
               <label className="block font-typewriter mb-2 text-smoke-tin/80">When do you need the work done by?</label>
               <input
@@ -691,7 +624,6 @@ const ContactSection = () => {
                 className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
               />
             </div>
-
             <div className="relative">
               <label className="block font-typewriter mb-2 text-smoke-tin/80">Street Address</label>
               <input
@@ -716,7 +648,6 @@ const ContactSection = () => {
                 className="w-full pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
               />
             </div>
-
             <div className="relative">
               <label className="block font-typewriter mb-2 text-smoke-tin/80">What services do you need?</label>
               <div className="flex flex-wrap gap-4">
@@ -741,38 +672,19 @@ const ContactSection = () => {
                 ))}
               </div>
             </div>
-
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 pt-3 pointer-events-none">
                 <MessageSquare size={20} className="text-worn-denim/60" />
               </div>
               <textarea
                 name="message"
-                placeholder="Anything else?"
+                placeholder="NOTES (optional)"
                 value={form.message}
                 onChange={handleChange}
-                rows={6}
-                className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter resize-none"
+                className="w-full pl-10 pr-4 py-3 border-2 border-saddle-dust/80 rounded-lg bg-saddle-dust/40 shadow focus:outline-none focus:ring-2 focus:ring-worn-denim/50 focus:border-worn-denim transition-all duration-300 font-typewriter"
+                rows={4}
               />
             </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: submitStatus !== 'idle' ? 1 : 0 }}
-              className="text-center"
-            >
-              {submitStatus === 'success' && (
-                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
-                  Message sent successfully! We'll get back to you soon.
-                </div>
-              )}
-              {submitStatus === 'error' && (
-                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
-                  Something went wrong. Please try again or call us directly.
-                </div>
-              )}
-            </motion.div>
-
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -787,42 +699,23 @@ const ContactSection = () => {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </motion.div>
-          </motion.form>
-          
-          {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-16 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: submitStatus !== 'idle' ? 1 : 0 }}
+              className="text-center"
           >
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
-                  <Phone size={24} className="text-worn-denim" />
+              {submitStatus === 'success' && (
+                <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
+                  Message sent successfully! We'll get back to you soon.
                 </div>
-                <h3 className="font-mono font-bold text-worn-denim mb-2">PHONE</h3>
-                <p className="font-typewriter text-smoke-tin/80">(480) 701-4847</p>
+              )}
+              {submitStatus === 'error' && (
+                <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4 font-typewriter">
+                  Something went wrong. Please try again or call us directly.
               </div>
-              
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
-                  <Mail size={24} className="text-worn-denim" />
-                </div>
-                <h3 className="font-mono font-bold text-worn-denim mb-2">EMAIL</h3>
-                <p className="font-typewriter text-smoke-tin/80">info@fridayswindows.com</p>
-              </div>
-              
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-worn-denim/10 rounded-full flex items-center justify-center mb-4">
-                  <Calendar size={24} className="text-worn-denim" />
-                </div>
-                <h3 className="font-mono font-bold text-worn-denim mb-2">HOURS</h3>
-                <p className="font-typewriter text-smoke-tin/80">SUN-SAT 7:30AM-7:30PM</p>
-              </div>
-            </div>
+              )}
           </motion.div>
+          </motion.form>
         </div>
       </div>
     </section>
@@ -840,12 +733,15 @@ const Carousel = ({ items, renderItem, autoPlay = true, interval = 5000, classNa
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (!autoPlay) return;
+    if (!autoPlay || !items || items.length === 0) return;
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
+      setCurrentIndex((prevIndex) => {
+        if (!items || items.length === 0) return prevIndex;
+        return (prevIndex + 1) % items.length;
+      });
     }, interval);
     return () => clearInterval(timer);
-  }, [items.length, interval, autoPlay]);
+  }, [items, interval, autoPlay]);
 
   const goToNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
@@ -975,7 +871,13 @@ const ClientsPage = () => {
         </p>
       </div>
       <div className="h-[600px] md:h-[700px] flex items-center justify-center">
-        <Carousel items={clientProjects} renderItem={renderClientProject} autoPlay={true} interval={7000} className="w-full h-full" />
+        <Carousel 
+          items={clientProjects} 
+          renderItem={renderClientProject} 
+          autoPlay={true} 
+          interval={7000} 
+          className="w-full h-full" 
+        />
       </div>
       <ContactSection />
     </div>
@@ -984,7 +886,7 @@ const ClientsPage = () => {
 
 // Shop Page Component
 const ShopPage = () => {
-  const shopItems = [
+  const shopItems = useMemo(() => [
     {
       id: 1,
                   name: "FRIDAY'S_PREMIUM_SQUEEGEE",
@@ -1013,7 +915,7 @@ const ShopPage = () => {
       description: "Premium cap for those who appreciate true clarity and understated luxury.",
       image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
     }
-  ];
+  ], []);
 
   const renderShopItem = (item: any) => (
     <div className="flex flex-col items-center bg-white p-8 rounded-lg shadow-lg border-2 border-saddle-dust/50 max-w-2xl mx-auto text-center min-h-[450px]">
@@ -1142,8 +1044,6 @@ export default function Home() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case '/clients':
-        return <ClientsPage />;
       case '/shop':
         return <ShopPage />;
       case '/':
@@ -1151,16 +1051,13 @@ export default function Home() {
         return (
           <>
             <CinematicHeroSection />
-            <div className="sticky top-0 z-50 -mt-10">
-              <Nav />
-            </div>
+            <Nav />
             <div className="-mt-1 md:-mt-2">
               <ClientMarquee />
             </div>
             <AboutSection />
             <ServicesSection />
             <ProcessSection />
-            <TestimonialSection />
             <ContactSection />
           </>
         );
@@ -1169,21 +1066,17 @@ export default function Home() {
 
   return (
     <>
-      <FridayHead />
       <main style={{ opacity: fontsLoaded ? 1 : 0, transition: 'opacity 0.3s ease-in-out' }}>
         {currentPage === '/' ? (
           <>
             <CinematicHeroSection />
-            <div className="sticky top-0 z-50 -mt-10">
-              <Nav />
-            </div>
+            <Nav />
             <div className="-mt-1 md:-mt-2">
               <ClientMarquee />
             </div>
             <AboutSection />
             <ServicesSection />
             <ProcessSection />
-            <TestimonialSection />
             <ContactSection />
           </>
         ) : (

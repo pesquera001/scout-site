@@ -62,7 +62,6 @@ const Nav = () => {
         </div>
         <nav className="hidden md:flex items-center gap-8">
           <a href="/" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">HOME</a>
-          <a href="/clients" className="font-mono text-sm font-light hover:text-worn-denim transition-colors tracking-wide">CLIENTS</a>
           <a href="/shop" className="font-mono text-sm font-light text-worn-denim tracking-wide">SHOP</a>
         </nav>
         <div className="flex items-center gap-4">
@@ -469,7 +468,6 @@ const Footer = () => (
           <h4 className="font-mono font-bold mb-4 text-smoke-tin tracking-wide">NAVIGATE</h4>
           <ul className="space-y-3 font-typewriter text-smoke-tin/80">
             <li><a href="/" className="hover:text-worn-denim tracking-wide">HOME</a></li>
-            <li><a href="/clients" className="hover:text-worn-denim tracking-wide">CLIENTS</a></li>
             <li><a href="/shop" className="hover:text-worn-denim tracking-wide">SHOP</a></li>
           </ul>
         </div>
